@@ -1,0 +1,110 @@
+{
+  "countryData": [
+    {
+      "id": 1,
+      "country": "India"
+    },
+    {
+      "id": 2,
+      "country": "USA"
+    },
+    {
+      "id": 3,
+      "country": "England"
+    },
+    {
+      "country": "China",
+      "id": 4
+    },
+    {
+      "country": "Dubai",
+      "id": 5
+    }
+  ],
+  "citydata": [
+    {
+      "id": 1,
+      "country": "India",
+      "city": "Delhi",
+      "population": "12345675"
+    },
+    {
+      "id": 2,
+      "country": "India",
+      "city": "Mumbai",
+      "population": "534567892"
+    },
+    {
+      "id": 3,
+      "country": "India",
+      "city": "Bengaluru",
+      "population": "23456781"
+    },
+    {
+      "id": 4,
+      "country": "India",
+      "city": "Hydrabad",
+      "population": "4567801"
+    },
+    {
+      "id": 5,
+      "country": "USA",
+      "city": "Washington",
+      "population": "234677"
+    },
+    {
+      "id": 6,
+      "country": "USA",
+      "city": "Chicago ",
+      "population": "123450"
+    },
+    {
+      "id": 7,
+      "country": "USA",
+      "city": "Los Angeles",
+      "population": "9345678"
+    },
+    {
+      "id": 8,
+      "country": "USA",
+      "city": "Phoenix",
+      "population": "23456"
+    },
+    {
+      "id": 9,
+      "country": "USA",
+      "city": "Denver",
+      "population": "45678"
+    },
+    {
+      "id": 10,
+      "country": "England",
+      "city": "London",
+      "population": "12345678"
+    },
+    {
+      "id": 11,
+      "country": "England",
+      "city": "Manchester",
+      "population": "456978"
+    },
+    {
+      "id": 12,
+      "country": "England",
+      "city": "Newport",
+      "population": "3945678"
+    },
+    {
+      "id": 13,
+      "country": "England",
+      "city": "Birmingham",
+      "population": "4995678"
+    },
+    {
+      "id": 14,
+      "country": "England",
+      "city": "United Kingdom",
+      "population": "5595670"
+    }
+  ]
+}
