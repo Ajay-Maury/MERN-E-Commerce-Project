@@ -12,13 +12,10 @@ import Edit from "./Edit";
 import AddCityComp from "./AddCityComp";
 import AddCountry from "./AddCountry";
 import { getCountryData } from "../Redux/AddCountry/Action";
-import {
-  DeleteCity,
-  getCityData,
-  SortByPopulation,
-} from "../Redux/AddCity/Action";
+import {DeleteCity,getCityData,SortByPopulation} from "../Redux/AddCity/Action";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     backgroundColor: theme.palette.common.black,
@@ -43,6 +40,7 @@ export default function Home() {
   const dispatch = useDispatch();
   const CityData = useSelector((store) => store.CitiesName.AddCity);
   const CountryData = useSelector((store) => store.CountrysName.AddCountry);
+  
   console.log(CityData, "cityDataaa111");
   const [filterdata, setFilter] = useState("");
   useEffect(() => {
@@ -50,7 +48,7 @@ export default function Home() {
     dispatch(getCityData());
   }, []);
   const handleSort = (e) => {
-    dispatch(Sortbypopulation(e));
+    dispatch(SortByPopulation(e));
   };
 
   return (

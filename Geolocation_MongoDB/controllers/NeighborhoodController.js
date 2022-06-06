@@ -1,10 +1,10 @@
 const express = require("express");
-const Neighborhood = require("../models/NeibhorhoodModel");
+const Neighborhood = require("../models/NeighborhoodModel");
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    const neighborhood = await Neighborhood.find().lean().exec();
+    const neighborhood = await Neighborhood.findOne().lean().exec();
     return res.status(200).send({ Neighborhoods: neighborhood });
   } catch (error) {
     return res.status(500).send(error);

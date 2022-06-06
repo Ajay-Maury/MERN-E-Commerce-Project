@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const neighborhoodSchema = new mongoose.Schema({
+const NeighborhoodSchema = new mongoose.Schema({
   name: { type: String, required: true },
   geometry: {
     type: {
@@ -14,5 +14,5 @@ const neighborhoodSchema = new mongoose.Schema({
   },
 });
 
-const Neighborhood = mongoose.model("neighborhood", neighborhoodSchema);
+const Neighborhood = mongoose.model("neighborhood", NeighborhoodSchema);
 module.exports = Neighborhood;

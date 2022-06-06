@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
-const resturentSchema = new mongoose.Schema({
+const RestaurantSchema = new mongoose.Schema({
   name: { type: String, required: true },
   location: {
     type: {
       type: String,
+      default:"Point",
       enum: ["Point"],
       required: true,
     },
@@ -13,5 +14,6 @@ const resturentSchema = new mongoose.Schema({
     },
   },
 });
-const Resturent = mongoose.model("resturent", resturentSchema);
-module.exports = Resturent;
+RestaurantSchema.index({location:"2dsphere"})
+const Restaurant = mongoose.model("restaurant", RestaurantSchema);
+module.exports = Restaurant;

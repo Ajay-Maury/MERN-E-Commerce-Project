@@ -9,7 +9,12 @@ const connect = () => {
 app.listen(PORT, async () => {
   try {
     await connect();
+
     console.log(`Connected to port : ${PORT}`);
+
+
+
+    // console.log(Neibhour .getMongo());
   } catch (err) {
     console.log({ msg: err.message });
   }

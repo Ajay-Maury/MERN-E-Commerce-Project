@@ -13,10 +13,10 @@ export function AddNewCountry(val) {
 };
 
 export const getCountryData = () => {
-    async (dispatch) => {
+    async () => {
         const res = await fetch(`http://localhost:8080/countryData`);
         const CountryData = await res.json()
-        console.log(CountryData)
-        dispatch(AddCountry(CountryData))
+        console.log("CountryData", CountryData);
+        // dispatch(AddCountry(CountryData))
     }
 }
