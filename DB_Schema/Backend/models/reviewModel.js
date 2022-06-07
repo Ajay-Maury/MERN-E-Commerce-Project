@@ -1,9 +1,9 @@
 const mongoose = require("mongoose")
 
-const ReviewSchena = new mongoose.Schema({
+const ReviewSchema = new mongoose.Schema({
 
 })
 
-const Review = mongoose.model("review",ReviewSchena)
+const Review = mongoose.model("review",ReviewSchema)
 
 module.exports = Review

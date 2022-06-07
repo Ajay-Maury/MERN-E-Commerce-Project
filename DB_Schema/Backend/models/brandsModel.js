@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
-const BrandSchena = new mongoose.Schema({});
+const BrandSchema = new mongoose.Schema({});
 
-const Brand = mongoose.model("brand", BrandSchena);
+const Brand = mongoose.model("brand", BrandSchema);
 
 module.exports = Brand;
