@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const BrandSchema = new mongoose.Schema({
-    title: { type: String, required: true },
-    product_Id :  {
+    name : { type: String, required: true },
+    products_Id :  {
     type: mongoose.Schema.Types.ObjectId,
     ref: "product",
     required: false,

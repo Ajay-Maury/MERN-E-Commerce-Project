@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const AddressSchema = new mongoose.Schema({
-  line1: { type: String, required: true },
+  address_line: { type: String, required: true },
   city: { type: String, required: true },
   pinCode: { type: Number, required: true , minlength:6,maxlength:6},
   district : { type: String, required: true },
