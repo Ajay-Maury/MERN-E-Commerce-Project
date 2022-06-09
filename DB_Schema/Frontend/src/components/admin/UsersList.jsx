@@ -25,9 +25,9 @@ const [userData,setUserData] = useState([])
             <p> Password : {ele.password}</p>
             <p> Mobile No. :{ele.mobile_no}</p>
             <p> Addesses : {ele.addresses}</p>
+          <hr/>
           </div>
         ))}
-      {/*  */}
     </div>
   );
 }

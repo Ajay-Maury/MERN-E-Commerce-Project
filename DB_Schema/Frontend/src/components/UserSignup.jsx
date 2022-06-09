@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 
@@ -7,8 +8,8 @@ const UserSignup = () => {
   const [password, setPassword] = useState("");
   const [mobile, setMobile] = useState();
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSubmit(e) {
+    // e.preventDefault();
     const userDetail = {
       name: user,
       email,
@@ -16,6 +17,8 @@ const UserSignup = () => {
       mobile_no: mobile,
     };
     console.log("user", userDetail);
+    const data = await axios.post(`http://localhost:5000/user/create`, userDetail);
+    console.log("data",data)
   }
 
   return (
@@ -57,8 +60,9 @@ const UserSignup = () => {
           onInput={(e) => setMobile(e.target.value)}
         />
         <br />
-        <input type="submit" value="Submit" onClick={handleSubmit} />
+        {/* <input type="submit" value="Submit" onClick={handleSubmit} /> */}
       </form>
+      <button onClick={handleSubmit}>Sign Up</button>
     </div>
   );
 };
