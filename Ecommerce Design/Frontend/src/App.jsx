@@ -6,17 +6,29 @@ import { Routes } from 'react-router-dom'
 import AdminPage from './components/admin/AdminPage'
 import { Route } from 'react-router-dom'
 import ProductCreate from './components/admin/ProductCreate'
-import ProductList from './components/admin/ProductList'
+import ProductList from './components/ProductList'
+import UserSignup from './components/user/UserSignup'
+import UserLogin from './components/user/UserLogin'
+import Navbar from './components/Navbar'
+import BrandCreate from './components/admin/BrandCreate'
+import UsersList from './components/admin/UsersList'
+import BrandsList from './components/admin/BrandsList'
 
 function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<AdminPage/>} />
-        <Route path="/products/create" element={<ProductCreate/>} />
-        <Route path="/products" element={<ProductList/>} />
+        <Route path="/admin" element={<AdminPage />} />
+        <Route path="/admin/products/create" element={<ProductCreate />} />
+        <Route path="/admin/brands/create" element={<BrandCreate />} />
+        <Route path="/admin/users" element={<UsersList />} />
+        <Route path="/user/signup" element={<UserSignup />} />
+        <Route path="/user/login" element={<UserLogin />} />
+        <Route path="/products" element={<ProductList />} />
+        <Route path="/brands" element={<BrandsList />} />
       </Routes>
     </div>
   );
