@@ -19,7 +19,7 @@ router.post("/create",async (req, res) => {
 );
 
 router.get("/", async (req, res) => {
-  console.log(1)
+  // console.log(1)
   try {
     const products = await Product.find({}).lean().exec()
     return res.status(200).send(products)

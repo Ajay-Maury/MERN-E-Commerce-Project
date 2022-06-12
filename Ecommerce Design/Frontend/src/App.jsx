@@ -15,6 +15,7 @@ import Navbar from './components/Navbar'
 import BrandCreate from './components/admin/BrandCreate'
 import UsersList from './components/admin/UsersList'
 import BrandsList from './components/admin/BrandsList'
+import Cart from './components/Cart'
 
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
         <Route path="/product/:id" element={<ProductDetail />} />
         <Route path="/products" element={<ProductDetail />} />
         <Route path="/brands" element={<BrandsList />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
     </div>
   );

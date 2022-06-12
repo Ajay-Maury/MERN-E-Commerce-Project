@@ -147,16 +147,18 @@ const [isLogin,setIsLogin] = React.useState(false)
         <p>Wishlist</p>
       </MenuItem>
       <MenuItem>
+            <Link to="/cart">
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
         >
           <Badge badgeContent={17} color="error">
-            <ShoppingCartOutlinedIcon />
+              <ShoppingCartOutlinedIcon />
           </Badge>
         </IconButton>
-        <p>Cart</p>
+            </Link>
+        <Link to="/cart">Cart</Link>
       </MenuItem>
       <MenuItem>
         <IconButton

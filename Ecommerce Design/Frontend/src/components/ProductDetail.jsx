@@ -26,7 +26,17 @@ const ProductDetail = () => {
  
   useEffect(() => {
     getData();
-  },[]);
+  }, []);
+  function handleCart(id) {
+    console.log(id)
+    const payload = {
+      products : id,
+      userId : "629f810c42a8105b131a4ae1"
+    };
+
+    const cart = axios.post(`http://localhost:5000/cart/create`, payload);
+    console.log("cart",cart)
+  }
   const { _id, colour, description, image_url, name, price, quantity } = data;
  
   return (
@@ -45,17 +55,17 @@ const ProductDetail = () => {
           {description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {colour}
+         Colour :  {colour}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {quantity}
+         Quantity :  {quantity}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           Rs. {price}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Add to Cart</Button>
+        <Button size="small" onClick={()=>handleCart(_id)}>Add to Cart</Button>
         <Button size="small">Buy Now</Button>
       </CardActions>
     </Card>
