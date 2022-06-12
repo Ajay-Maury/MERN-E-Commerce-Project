@@ -8,15 +8,15 @@ router.post("/create", async (req, res) => {
     try {
         const User = req.body.userId;
       const productId = req.body.products;
-      console.log(User,productId,"Check")
+      // console.log(User,productId,"Check")
         // const productId[quantity ]= req.body.quantity;
       const check = await Cart.findOne({ userId: User }).lean().exec();
       if (check) {
-          console.log(check._id)
+          // console.log(check._id)
             const cart = await Cart.findByIdAndUpdate(check._id, {
                 $push: { products: productId },
             });
-        console.log("cart",cart)
+        // console.log("cart",cart)
             return res.status(201).send({ Cart: cart });
         } else {
             const cart = await Cart.create(req.body);
@@ -55,9 +55,12 @@ router.patch("/:id", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id/delete/:idx", async (req, res) => {
   try {
-    const cart = await Cart.findByIdAndDelete(req.params.id);
+     const cart = await Cart.findByIdAndUpdate(req.params.id, {
+       $pull: { products: req.params.idx },
+     });
+    // console.log("cart",cart)
     return res.status(204).send({ Cart: cart });
   } catch (error) {
     return res.status(500).send({ error: error.message });

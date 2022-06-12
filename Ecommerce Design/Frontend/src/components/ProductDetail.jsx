@@ -55,17 +55,27 @@ const ProductDetail = () => {
           {description}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-         Colour :  {colour}
+          Quantity : {quantity}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-         Quantity :  {quantity}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Rs. {price}
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ display: "flex", justifyContent: "space-around" }}
+        >
+          <span>
+            <strong>Colour :</strong>
+            {colour}
+          </span>
+          <span>
+            <strong>Price :</strong>
+            {price}
+          </span>
         </Typography>
       </CardContent>
-      <CardActions>
-        <Button size="small" onClick={()=>handleCart(_id)}>Add to Cart</Button>
+      <CardActions sx={{ display: "flex", justifyContent: "space-around" }}>
+        <Button size="small" onClick={() => handleCart(_id)}>
+          Add to Cart
+        </Button>
         <Button size="small">Buy Now</Button>
       </CardActions>
     </Card>

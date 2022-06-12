@@ -146,8 +146,8 @@ const [isLogin,setIsLogin] = React.useState(false)
         </IconButton>
         <p>Wishlist</p>
       </MenuItem>
-      <MenuItem>
             <Link to="/cart">
+      <MenuItem>
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
@@ -157,9 +157,9 @@ const [isLogin,setIsLogin] = React.useState(false)
               <ShoppingCartOutlinedIcon />
           </Badge>
         </IconButton>
-            </Link>
-        <Link to="/cart">Cart</Link>
+       Cart
       </MenuItem>
+            </Link>
       <MenuItem>
         <IconButton
           size="large"
@@ -205,7 +205,11 @@ const [isLogin,setIsLogin] = React.useState(false)
               variant="h6"
               noWrap
               component="div"
-              sx={{ display: { xs: "none", sm: "block" },textDecoration:"none",color:"black" }}
+              sx={{
+                display: { xs: "none", sm: "block" },
+                textDecoration: "none",
+                color: "black",
+              }}
             >
               Ecommerce Site
             </Typography>
@@ -230,15 +234,17 @@ const [isLogin,setIsLogin] = React.useState(false)
                 <FavoriteRoundedIcon />
               </Badge>
             </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <ShoppingCartOutlinedIcon />
-              </Badge>
-            </IconButton>
+              <IconButton
+                size="large"
+                aria-label="show 17 new notifications"
+                color="inherit"
+              >
+                <Badge badgeContent={17} color="error">
+            <Link to="/cart">
+                  <ShoppingCartOutlinedIcon />
+            </Link>
+                </Badge>
+              </IconButton>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
