@@ -1,10 +1,14 @@
 import React from 'react'
 import axios from "axios";
-import { useState } from 'react'
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { Stack } from '@mui/material';
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
 const ProductCreate = () => {
     const [productName,setProductName] = useState("")
@@ -14,7 +18,28 @@ const ProductCreate = () => {
     const [productPrice,setProductPrice] = useState("")
     const [productColour,setProductColour] = useState([])
     const [productQuantity,setProductQuantity] = useState("")
-    const [productImage,setProductImage] = useState("")
+  const [productImage, setProductImage] = useState("")
+  const [Brands, setBrands] = useState([])
+  const [Category, setCategory] = useState([]);
+  
+  async function brand() {
+    const data = await axios
+      .get("http://localhost:5000/brands")
+      .then((d) => d.data);
+    console.log(data.Brand);
+    setBrands(data.Brand)
+ }
+  async function categ() {
+    const data = await axios
+      .get("http://localhost:5000/category")
+      .then((d) => d.data);
+    console.log(data)
+    setCategory(data.Category)
+  }
+  useEffect(() => {
+    brand();
+    categ();
+  },[])
 
   async function handleProduct() {
     const product = {
@@ -37,9 +62,10 @@ const ProductCreate = () => {
       <Box
         sx={{
           // display: "flex",
+          margin: "auto",
           alignItems: "center",
           "& > :not(style)": { m: 1 },
-          width:"100%",
+          width: "40%",
         }}
       >
         <Stack direction="column" spacing={2}>
@@ -53,16 +79,38 @@ const ProductCreate = () => {
             label="Product Description"
             onChange={(e) => setProductDesc(e.target.value)}
           />
-          <TextField
-            id="demo-helper-text-aligned"
-            label="Product Category"
-            onChange={(e) => setProductCategory(e.target.value)}
-          />
-          <TextField
-            id="demo-helper-text-aligned"
-            label="Product Brand"
-            onChange={(e) => setProductBrand(e.target.value)}
-          />
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Category</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={productCategory}
+              label="Category"
+              onChange={(e) => setProductCategory(e.target.value)}
+            >
+              {Category?.map((elem) => (
+                <MenuItem value={elem._id} key={elem._id}>
+                  {elem.category}
+                </MenuItem>
+              ))}
+          </Select>
+          </FormControl>
+          <FormControl fullWidth>
+            <InputLabel id="demo-simple-select-label">Brand</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              value={productBrand}
+              label="Brand"
+              onChange={(e) => setProductBrand(e.target.value)}
+            >
+              {Brands?.map((elem) => (
+                <MenuItem value={elem._id} key={elem._id}>
+                  {elem.BrandName}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
           <TextField
             id="demo-helper-text-aligned"
             label="Product Price"
@@ -75,7 +123,7 @@ const ProductCreate = () => {
           />
           <TextField
             id="demo-helper-text-aligned"
-            label="Product Colours seprated by ,"
+            label="Product Colour"
             onChange={(e) => setProductColour(e.target.value)}
           />
           <TextField
@@ -85,7 +133,7 @@ const ProductCreate = () => {
           />
         </Stack>
       </Box>
-      <Button variant="outlined" onClick={handleProduct}>
+      <Button variant="contained" onClick={handleProduct}>
         Create Product
       </Button>
     </div>

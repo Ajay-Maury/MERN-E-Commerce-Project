@@ -28,48 +28,51 @@ const UserSignup = () => {
 
   return (
     <div>
-      
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            margin: "auto",
-            "& > :not(style)": { m: 1 },
-          }}
-        >
-          <Stack direction="column" spacing={2}>
-            <TextField
-              id="demo-helper-text-aligned"
-              label="Name"
-              onInput={(e) => setUser(e.target.value)}
-            />
-            <TextField
-              id="demo-helper-text-aligned"
-              label="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <TextField
-              id="demo-helper-text-aligned"
-              label="Mobile Number"
-              onInput={(e) => setMobile(e.target.value)}
-            />
-            <TextField
-              id="demo-helper-text-aligned"
-              label="Password"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <TextField
-              id="demo-helper-text-aligned"
-              label="Profile Pic"
-              onChange={(e) => setProfilePic(e.target.value)}
-            />
-          </Stack>
-        </Box>
-        <Button variant="outlined" onClick={handleSignUP}>
-          Sign Up
-        </Button>
-      </div>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          margin: "auto",
+          "& > :not(style)": { m: 1 },
+        }}
+      >
+        <Stack direction="column" spacing={2}>
+          <TextField
+            id="demo-helper-text-aligned"
+            label="Name"
+            required
+            onInput={(e) => setUser(e.target.value)}
+          />
+          <TextField
+            id="demo-helper-text-aligned"
+            label="Email"
+            required
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            id="demo-helper-text-aligned"
+            label="Mobile Number"
+            required
+            onInput={(e) => setMobile(e.target.value)}
+          />
+          <TextField
+            id="demo-helper-text-aligned"
+            label="Password"
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <TextField
+            id="demo-helper-text-aligned"
+            label="Profile Pic"
+            onChange={(e) => setProfilePic(e.target.value)}
+          />
+        </Stack>
+      </Box>
+      <Button variant="outlined" onClick={handleSignUP}>
+        Sign Up
+      </Button>
+    </div>
   );
 };
 

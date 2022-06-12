@@ -4,9 +4,15 @@ const WishlistSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "product",
-      required: false,
+      required: true,
     },
   ],
+  userId: 
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "user",
+      required: fatruelse,
+    },
 });
 
 const Wishlist = mongoose.model("wishlist", WishlistSchema);

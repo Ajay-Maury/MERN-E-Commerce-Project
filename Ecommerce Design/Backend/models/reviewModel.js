@@ -7,7 +7,7 @@ const ReviewSchema = new mongoose.Schema({
     ref: "Product",
     required: true,
   },
-  reviewMessage: { type: String, required: true },
+  reviewMessage: { type: String, required: false },
   rating: { type: Number, required: true,default:0 },
 });
 
