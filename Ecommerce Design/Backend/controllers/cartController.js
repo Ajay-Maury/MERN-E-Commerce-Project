@@ -48,9 +48,7 @@ router.get("/:id", async (req, res) => {
 
 router.patch("/:id", async (req, res) => {
   try {
-    const cart = await Cart.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-    });
+    const cart = await Cart.findByIdAndUpdate(req.params.id, req.body,);
     return res.status(203).send({ Cart: cart });
   } catch (error) {
     return res.status(500).send({ error: error.message });
@@ -65,66 +63,5 @@ router.delete("/:id", async (req, res) => {
     return res.status(500).send({ error: error.message });
   }
 });
-router.get("/:id/address", async (req, res) => {
-  try {
-    const address = await Cart.findById(req.params.id)
-      .populate({ path: "addresses" })
-      .lean()
-      .exec();
-    return res.status(200).send({ address: address });
-  } catch (error) {
-    return res.status(500).send({ error: error.message });
-  }
-});
 
-router.post(
-  "/:id/address/create",
-
-  async (req, res) => {
-    // console.log("q")
-    try {
-      const errors = validationResult(req);
-      //   console.log({ errors });
-      if (!errors.isEmpty()) {
-        return res.status(400).send({ errors: errors.array() });
-      }
-      const address = await Address.create(req.body);
-      const cart = await Cart.findByIdAndUpdate(req.params.id, {
-        $push: { addresses: address._id },
-      });
-      return res.status(200).send({ Address: address, Cart: cart });
-    } catch (error) {
-      return res.status(500).send({ error: error.message });
-    }
-  }
-);
-router.patch(
-  "/address/edit/:idx",
-
-  async (req, res) => {
-    try {
-      const errors = validationResult(req);
-      //   console.log({ errors });
-      if (!errors.isEmpty()) {
-        return res.status(400).send({ errors: errors.array() });
-      }
-      const address = await Address.findByIdAndUpdate(req.params.idx, req.body);
-      return res.status(200).send({ address: address });
-    } catch (error) {
-      return res.status(500).send({ error: error.message });
-    }
-  }
-);
-router.delete(":id/address/delete/:idx", async (req, res) => {
-  try {
-    const address = await Address.findByIdAndDelete(req.params.idx);
-    const cart = await Cart.findByIdAndUpdate(req.params.id, {
-      $pull: { addresses: req.params.idx },
-    });
-    return res.status(200).send({ address: address });
-  } catch (error) {
-    return res.status(500).send({ error: error.message });
-  }
-});
-
-module.exports = router;
+module.exports = router

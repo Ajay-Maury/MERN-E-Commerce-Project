@@ -7,6 +7,7 @@ import AdminPage from './components/admin/AdminPage'
 import { Route } from 'react-router-dom'
 import ProductCreate from './components/admin/ProductCreate'
 import ProductList from './components/ProductList'
+import ProductDetail from './components/ProductDetail'
 import UserSignup from './components/user/UserSignup'
 import UserLogin from './components/user/UserLogin'
 import UserProfile from "./components/user/UserProfile";
@@ -29,8 +30,9 @@ function App() {
         <Route path="/admin/users" element={<UsersList />} />
         <Route path="/user/signup" element={<UserSignup />} />
         <Route path="/user/login" element={<UserLogin />} />
-        <Route path="/user/profile" element={ <UserProfile/> }/>
-        <Route path="/products" element={<ProductList />} />
+        <Route path="/user/profile" element={<UserProfile />} />
+        <Route path="/product/:id" element={<ProductDetail />} />
+        <Route path="/products" element={<ProductDetail />} />
         <Route path="/brands" element={<BrandsList />} />
       </Routes>
     </div>

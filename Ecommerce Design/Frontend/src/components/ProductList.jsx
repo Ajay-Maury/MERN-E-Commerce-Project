@@ -8,9 +8,28 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import { IconButton, ListItemButton } from '@mui/material';
+import { Box, IconButton, ListItemButton } from '@mui/material';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
+  const [products, setProducts] = useState([])
+  let navigate = useNavigate();
+
+  async function getData() {
+    const data = await axios("http://localhost:5000/products").then((d) => d.data)
+    console.log(data)
+    setProducts(data);
+  }
+  useEffect(() => {
+    getData()
+  }, [])
+  const handleClick = (id) => {
+    console.log("check",id)
+    navigate(`./product/${id}`, { replace: false });
+  }
   return (
     <div>
       <List
@@ -20,83 +39,44 @@ const ProductList = () => {
           alignItems: "center",
         }}
       >
-        <ListItemButton>
-          <ListItem
-            alignItems="flex-start"
-            secondaryAction={
-              <IconButton edge="end" aria-label="delete">
-                <DeleteIcon />
-              </IconButton>
-            }
-          >
-            <ListItemAvatar>
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-              primary="Brunch this weekend?"
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    sx={{ display: "inline" }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    Ali Connors
-                  </Typography>
-                  {" — I'll be in your neighborhood doing errands this…"}
-                </React.Fragment>
-              }
-            />
-          </ListItem>
-        </ListItemButton>
-        <Divider component="li" />
-        <ListItemButton>
-          <ListItem alignItems="flex-start">
-            <ListItemAvatar>
-              <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />
-            </ListItemAvatar>
-            <ListItemText
-              primary="Summer BBQ"
-              secondary={
-                <React.Fragment>
-                  <Typography
-                    sx={{ display: "inline" }}
-                    component="span"
-                    variant="body2"
-                    color="text.primary"
-                  >
-                    to Scott, Alex, Jennifer
-                  </Typography>
-                  {" — Wish I could come, but I'm out of town this…"}
-                </React.Fragment>
-              }
-            />
-          </ListItem>
-        </ListItemButton>
-        <Divider variant="inset" component="li" />
-
-        <ListItem alignItems="flex-start">
-          <ListItemAvatar>
-            <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />
-          </ListItemAvatar>
-          <ListItemText
-            primary="Oui Oui"
-            secondary={
-              <React.Fragment>
-                <Typography
-                  sx={{ display: "inline" }}
-                  component="span"
-                  variant="body2"
-                  color="text.primary"
-                >
-                  Sandra Adams
-                </Typography>
-                {" — Do you have Paris recommendations? Have you ever…"}
-              </React.Fragment>
-            }
-          />
-        </ListItem>
+        {products?.map((ele) => (
+          <Box key={ele._id}>
+            <ListItemButton onClick={()=>handleClick(ele._id)}>
+              <ListItem
+                alignItems="flex-start"
+                fontSize="50px"
+                secondaryAction={
+                  <IconButton edge="end" aria-label="delete">
+                    <DeleteIcon />
+                  </IconButton>
+                }
+              >
+                <ListItemAvatar>
+                  <Avatar alt="Remy Sharp" src={ele.image_url} />
+                </ListItemAvatar>
+                <ListItemText
+                  primary=  {ele.name}
+                  secondary={
+                    <React.Fragment>
+                      <Typography
+                        sx={{ display: "inline" }}
+                        component="span"
+                        variant="body2"
+                        color="text.primary"
+                      >
+                        REVIEWS
+                      </Typography>
+                      <br />
+                      <span>{ele.description}</span><br />
+                      <span>Rs. {ele.price}</span>
+                    </React.Fragment>
+                  }
+                />
+              </ListItem>
+            </ListItemButton>
+            <Divider component="li" />
+          </Box>
+        ))}
       </List>
     </div>
   );

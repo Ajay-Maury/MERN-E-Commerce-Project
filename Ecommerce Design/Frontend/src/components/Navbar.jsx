@@ -18,6 +18,7 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -197,14 +198,16 @@ const [isLogin,setIsLogin] = React.useState(false)
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            Ecommerce Site
-          </Typography>
+          <Link to="/">
+            <Typography
+              variant="h6"
+              noWrap
+              component="div"
+              sx={{ display: { xs: "none", sm: "block" },textDecoration:"none",color:"black" }}
+            >
+              Ecommerce Site
+            </Typography>
+          </Link>
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
