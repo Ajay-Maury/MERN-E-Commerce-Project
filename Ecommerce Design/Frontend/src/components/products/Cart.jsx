@@ -45,8 +45,9 @@ const Cart = () => {
   
   return (
     <Box sx={{ width: 1 }}>
+      {productsData.length===0 && <div>Cart is empty</div>}
       <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
-        {productsData?.map((item,i) => (
+        {productsData?.map((item, i) => (
           <>
             <Box gridColumn="span 4" key={i}>
               <Card sx={{ maxWidth: 345 }}>
@@ -81,7 +82,9 @@ const Cart = () => {
                 <CardActions
                   sx={{ display: "flex", justifyContent: "space-around" }}
                 >
-                  <Button size="small" onClick={()=>handleRemove(item._id)} >Remove</Button>
+                  <Button size="small" onClick={() => handleRemove(item._id)}>
+                    Remove
+                  </Button>
                   <Button size="small">Buy Now</Button>
                 </CardActions>
               </Card>

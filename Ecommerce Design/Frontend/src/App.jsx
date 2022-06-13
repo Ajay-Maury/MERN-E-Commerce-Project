@@ -6,8 +6,8 @@ import { Routes } from 'react-router-dom'
 import AdminPage from './components/admin/AdminPage'
 import { Route } from 'react-router-dom'
 import ProductCreate from './components/admin/ProductCreate'
-import ProductList from './components/ProductList'
-import ProductDetail from './components/ProductDetail'
+import ProductList from './components/products/ProductList'
+import ProductDetail from "./components/products/ProductDetail";
 import UserSignup from './components/user/UserSignup'
 import UserLogin from './components/user/UserLogin'
 import UserProfile from "./components/user/UserProfile";
@@ -15,7 +15,8 @@ import Navbar from './components/Navbar'
 import BrandCreate from './components/admin/BrandCreate'
 import UsersList from './components/admin/UsersList'
 import BrandsList from './components/admin/BrandsList'
-import Cart from './components/Cart'
+import CategoryCreate from './components/admin/CategoryCreate'
+import Cart from "./components/products/Cart";
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route path="/admin/products/create" element={<ProductCreate />} />
         <Route path="/admin/brands/create" element={<BrandCreate />} />
+        <Route path="/admin/catogery/create" element={<CategoryCreate />} />
         <Route path="/admin/users" element={<UsersList />} />
         <Route path="/user/signup" element={<UserSignup />} />
         <Route path="/user/login" element={<UserLogin />} />

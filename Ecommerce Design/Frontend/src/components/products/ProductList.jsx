@@ -34,8 +34,9 @@ const ProductList = () => {
     <div>
       <List
         sx={{
-          width: "800%",
+          width: "100%",
           bgcolor: "background.paper",
+          margin:"2% auto",
           alignItems: "center",
         }}
       >
@@ -45,11 +46,11 @@ const ProductList = () => {
               <ListItem
                 alignItems="flex-start"
                 fontSize="50px"
-                secondaryAction={
-                  <IconButton edge="end" aria-label="delete">
-                    <DeleteIcon />
-                  </IconButton>
-                }
+                // secondaryAction={
+                //   <IconButton edge="end" aria-label="delete">
+                //     <DeleteIcon />
+                //   </IconButton>
+                // }
               >
                 <ListItemAvatar>
                   <Avatar alt="Remy Sharp" src={ele.image_url} />

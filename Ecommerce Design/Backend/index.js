@@ -9,8 +9,6 @@ const CartController = require("./controllers/cartController")
 app.use(express.json())
 app.use(cors())
 
-
-
 app.use("/user", UserController)
 app.use("/products",ProductController)
 app.use("/brands",BrandController)

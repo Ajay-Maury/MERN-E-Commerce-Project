@@ -1,62 +1,73 @@
-import React from 'react'
+import React from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import { Stack } from '@mui/material';
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import { Stack } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
 const ProductCreate = () => {
-    const [productName,setProductName] = useState("")
-    const [productDesc,setProductDesc] = useState("")
-    const [productCategory,setProductCategory] = useState("")
-    const [productBrand,setProductBrand] = useState("")
-    const [productPrice,setProductPrice] = useState("")
-    const [productColour,setProductColour] = useState([])
-    const [productQuantity,setProductQuantity] = useState("")
-  const [productImage, setProductImage] = useState("")
-  const [Brands, setBrands] = useState([])
+  const [productName, setProductName] = useState("");
+  const [productDesc, setProductDesc] = useState("");
+  const [productCategory, setProductCategory] = useState("");
+  const [productBrand, setProductBrand] = useState("");
+  const [productPrice, setProductPrice] = useState("");
+  const [productColour, setProductColour] = useState([]);
+  const [productQuantity, setProductQuantity] = useState("");
+  const [productImage, setProductImage] = useState("");
+  const [Brands, setBrands] = useState([]);
   const [Category, setCategory] = useState([]);
-  
+
   async function brand() {
     const data = await axios
       .get("http://localhost:5000/brands")
       .then((d) => d.data);
     console.log(data.Brand);
-    setBrands(data.Brand)
- }
+    setBrands(data.Brand);
+  }
   async function categ() {
     const data = await axios
       .get("http://localhost:5000/category")
       .then((d) => d.data);
-    console.log(data)
-    setCategory(data.Category)
+    console.log(data);
+    setCategory(data.Category);
   }
   useEffect(() => {
     brand();
     categ();
-  },[])
+  }, []);
 
   async function handleProduct() {
     const product = {
       name: productName,
       description: productDesc,
-      category: productCategory,
-      brand_Id: productBrand,
+      categoryId: productCategory,
+      brandId: productBrand,
       price: productPrice,
       colour: productColour,
       quantity: productQuantity,
       image_url: productImage,
     };
-    console.log(product)
-    const data = axios.post(`http://localhost:5000/products/create`, product);
-    console.log("Product : ",data)
+
+    console.log(product);
+    const data = axios
+      .post(`http://localhost:5000/products/create`, product)
+      .then((d) => d.data);
+    console.log("Product : ", data);
+     setProductBrand(""),
+       setProductCategory(""),
+       setProductName(""),
+       setProductDesc(""),
+       setProductPrice(""),
+       setProductColour(""),
+       setProductQuantity(""),
+       setProductImage("");
   }
-  
+
   return (
     <div>
       <Box
@@ -93,7 +104,7 @@ const ProductCreate = () => {
                   {elem.category}
                 </MenuItem>
               ))}
-          </Select>
+            </Select>
           </FormControl>
           <FormControl fullWidth>
             <InputLabel id="demo-simple-select-label">Brand</InputLabel>
@@ -138,6 +149,6 @@ const ProductCreate = () => {
       </Button>
     </div>
   );
-}
+};
 
-export default ProductCreate
+export default ProductCreate;

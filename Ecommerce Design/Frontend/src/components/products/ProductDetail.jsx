@@ -40,7 +40,7 @@ const ProductDetail = () => {
   const { _id, colour, description, image_url, name, price, quantity } = data;
  
   return (
-    <Card variant="outlined" sx={{ maxWidth: 345 }}>
+    <Card variant="outlined" sx={{ maxWidth: 345, margin:"3% auto"}}>
       <CardMedia
         component="img"
         height="140"

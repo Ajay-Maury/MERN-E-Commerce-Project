@@ -23,6 +23,12 @@ const AdminPage = () => {
         </Button>
         <Button
           variant="outlined"
+          onClick={() => navigate("/admin/catogery/create", { replace: false })}
+        >
+          Create Category
+        </Button>
+        <Button
+          variant="outlined"
           onClick={() => navigate("/admin/users", { replace: false })}
         >
           Users List

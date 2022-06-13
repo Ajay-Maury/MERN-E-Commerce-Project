@@ -17,6 +17,7 @@ router.post("/create", async (req, res) => {
                 $push: { products: productId },
             });
         // console.log("cart",cart)
+        
             return res.status(201).send({ Cart: cart });
         } else {
             const cart = await Cart.create(req.body);
