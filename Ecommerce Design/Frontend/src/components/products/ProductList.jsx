@@ -13,10 +13,15 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProduct } from '../../redux/products/action';
 
 const ProductList = () => {
   const [products, setProducts] = useState([])
   let navigate = useNavigate();
+  const dispatch = useDispatch()
+  const prod = useSelector(state => state)
+  console.log(prod,"Prod")
 
   async function getData() {
     const data = await axios("http://localhost:5000/products").then((d) => d.data)
@@ -24,6 +29,7 @@ const ProductList = () => {
     setProducts(data);
   }
   useEffect(() => {
+    dispatch(fetchProduct())
     getData()
   }, [])
   const handleClick = (id) => {

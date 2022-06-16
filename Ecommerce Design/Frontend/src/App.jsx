@@ -17,28 +17,33 @@ import UsersList from './components/admin/UsersList'
 import BrandsList from './components/admin/BrandsList'
 import CategoryCreate from './components/admin/CategoryCreate'
 import Cart from "./components/products/Cart";
+import { Provider } from 'react-redux'
+import store from "./redux/store"
+
 
 
 function App() {
 
   return (
     <div className="App">
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/admin" element={<AdminPage />} />
-        <Route path="/admin/products/create" element={<ProductCreate />} />
-        <Route path="/admin/brands/create" element={<BrandCreate />} />
-        <Route path="/admin/catogery/create" element={<CategoryCreate />} />
-        <Route path="/admin/users" element={<UsersList />} />
-        <Route path="/user/signup" element={<UserSignup />} />
-        <Route path="/user/login" element={<UserLogin />} />
-        <Route path="/user/profile" element={<UserProfile />} />
-        <Route path="/product/:id" element={<ProductDetail />} />
-        <Route path="/products" element={<ProductDetail />} />
-        <Route path="/brands" element={<BrandsList />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
+      <Provider store={store}>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin/products/create" element={<ProductCreate />} />
+          <Route path="/admin/brands/create" element={<BrandCreate />} />
+          <Route path="/admin/catogery/create" element={<CategoryCreate />} />
+          <Route path="/admin/users" element={<UsersList />} />
+          <Route path="/user/signup" element={<UserSignup />} />
+          <Route path="/user/login" element={<UserLogin />} />
+          <Route path="/user/profile" element={<UserProfile />} />
+          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/products" element={<ProductDetail />} />
+          <Route path="/brands" element={<BrandsList />} />
+          <Route path="/cart" element={<Cart />} />
+        </Routes>
+      </Provider>
     </div>
   );
 }
