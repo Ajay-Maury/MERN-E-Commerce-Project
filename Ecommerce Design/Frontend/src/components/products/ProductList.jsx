@@ -17,20 +17,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from '../../redux/products/action';
 
 const ProductList = () => {
-  const [products, setProducts] = useState([])
   let navigate = useNavigate();
   const dispatch = useDispatch()
-  const prod = useSelector(state => state)
-  console.log(prod,"Prod")
-
-  async function getData() {
-    const data = await axios("http://localhost:5000/products").then((d) => d.data)
-    console.log(data)
-    setProducts(data);
-  }
+  const {loading,error,products} = useSelector(state => state.allProducts)
+  // console.log(loading, error, products, "Prod");
+  
   useEffect(() => {
     dispatch(fetchProduct())
-    getData()
+    // getData()
   }, [])
   const handleClick = (id) => {
     console.log("check",id)
@@ -38,6 +32,8 @@ const ProductList = () => {
   }
   return (
     <div>
+      {loading && <div>Loading please wait....</div>}
+      {error && <div>{error}</div>}
       <List
         sx={{
           width: "100%",
