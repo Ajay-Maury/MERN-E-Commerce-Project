@@ -4,9 +4,6 @@ export const FETCH_CART_REQUEST = "FETCH_CART_REQUEST";
 export const FETCH_CART_SUCCESS = "FETCH_CART_SUCCESS";
 export const FETCH_CART_FAILURE = "FETCH_CART_FAILURE";
 
-export const REMOVE_CART_ITEM_REQUEST = "REMOVE_CART_ITEM_REQUEST";
-export const REMOVE_CART_ITEM_SUCCESS = "REMOVE_CART_ITEM_SUCCESS";
-export const REMOVE_CART_ITEM_FAILURE = "REMOVE_CART_ITEM_FAILURE";
 
 
 
@@ -30,7 +27,7 @@ const fetchCartFailure = (error) => {
   };
 };
 
- const fetchCartData = () => {
+export const fetchCartData = () => {
   return function (dispatch) {
     dispatch(fetchCartRequest());
     axios(`http://localhost:5000/cart`)
@@ -39,33 +36,4 @@ const fetchCartFailure = (error) => {
   };
 };
 
-const removeCartItemRequest = () => {
-  return {
-    type: REMOVE_CART_ITEM_REQUEST,
-  };
-};
 
-const removeCartItemSuscess = (data) => {
-  return {
-    type: REMOVE_CART_ITEM_SUCCESS,
-    payload: data,
-  };
-};
-
-const removeCartItemFailure = (error) => {
-  return {
-    type: REMOVE_CART_ITEM_FAILURE,
-    payload: error,
-  };
-};
-
- const removeCartItem = (cartId, itemId) => (dispatch) => {
-    console.log("cartId, itemId", cartId, itemId);
-    dispatch(removeCartItemRequest());
-  axios
-    .delete(`http://localhost:5000/cart/${cartId}/delete/${itemId}`)
-    .then((response) => dispatch(removeCartItemSuscess(response.data)))
-    .catch((error) => dispatch(removeCartItemFailure(error.message)));
-};
-
-export { removeCartItem, fetchCartData};

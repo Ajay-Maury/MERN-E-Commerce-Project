@@ -19,6 +19,7 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -61,7 +62,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
-const [isLogin,setIsLogin] = React.useState(false)
+  const [isLogin, setIsLogin] = React.useState(false)
+  const CartProduct = useSelector((state) => state.cartData.data);
+  const CartProductCount = CartProduct?.products?.length
+  console.log("CO", CartProductCount)
+  
+  React.useEffect(() => {CartProductCount;}, [CartProduct]);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -146,20 +152,20 @@ const [isLogin,setIsLogin] = React.useState(false)
         </IconButton>
         <p>Wishlist</p>
       </MenuItem>
-            <Link to="/cart">
-      <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
+      <Link to="/cart">
+        <MenuItem>
+          <IconButton
+            size="large"
+            aria-label="show 17 new notifications"
+            color="inherit"
+          >
+            <Badge badgeContent={CartProductCount} color="error">
               <ShoppingCartOutlinedIcon />
-          </Badge>
-        </IconButton>
-       Cart
-      </MenuItem>
-            </Link>
+            </Badge>
+          </IconButton>
+          Cart
+        </MenuItem>
+      </Link>
       <MenuItem>
         <IconButton
           size="large"
@@ -234,17 +240,17 @@ const [isLogin,setIsLogin] = React.useState(false)
                 <FavoriteRoundedIcon />
               </Badge>
             </IconButton>
-              <IconButton
-                size="large"
-                aria-label="show 17 new notifications"
-                color="inherit"
-              >
-                <Badge badgeContent={17} color="error">
-            <Link to="/cart">
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+            >
+              <Badge badgeContent={CartProductCount} color="error">
+                <Link to="/cart">
                   <ShoppingCartOutlinedIcon />
-            </Link>
-                </Badge>
-              </IconButton>
+                </Link>
+              </Badge>
+            </IconButton>
             <IconButton
               size="large"
               aria-label="show 17 new notifications"

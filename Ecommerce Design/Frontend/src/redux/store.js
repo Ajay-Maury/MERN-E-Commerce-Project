@@ -6,11 +6,15 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "@redux-devtools/extension";
 import { SingleProductReducer } from "./productByID/reducer";
 import { CartReducer } from "./cart/reducer";
+import { AddToCartReducer } from "./cart/addToCart/reducer";
+import { RemoveCartItemReducer } from "./cart/removeFromCart/reducer";
 
 const root_reducer = combineReducers({
   allProducts: productReducer,
     singleProduct: SingleProductReducer,
-  cartData : CartReducer
+  cartData: CartReducer,
+  addCart: AddToCartReducer,
+  removeCartItem : RemoveCartItemReducer,
 });
 
 const store = createStore(

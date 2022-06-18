@@ -12,7 +12,8 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCartData, removeCartItem } from '../../redux/cart/action';
+import { fetchCartData} from '../../redux/cart/action';
+import { removeCartItem } from '../../redux/cart/removeFromCart/action';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -27,20 +28,20 @@ const Cart = () => {
   const dispatch = useDispatch();
   const cartdata = useSelector((state) => state.cartData.data);
   console.log("cartd", cartdata);
+  const removeItem = useSelector((state) => state.removeCartItem);
+  console.log("Remove",removeItem)
   
   const { _id, products, userId } = cartdata;
   console.log(_id, products, userId);
 
   useEffect(() => {
     dispatch(fetchCartData());
-  }, [dispatch]);
+  }, [removeItem]);
 
    function handleRemove(item) {
     // console.log("item",item,"id",_id);
-    // const data = await axios.delete(`http://localhost:5000/cart/${_id}/delete/${item}`);
     dispatch(removeCartItem(_id,item))
-    // console.log(data.data)
-    console.log(1)
+    // console.log(1)
   }
 
   return (
