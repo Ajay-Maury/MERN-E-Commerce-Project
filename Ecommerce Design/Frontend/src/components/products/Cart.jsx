@@ -12,7 +12,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCartData } from '../../redux/cart/action';
+import { fetchCartData, removeCartItem } from '../../redux/cart/action';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -24,38 +24,32 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 const Cart = () => {
-    const [productsData, setProducts] = useState([])
-    const [cartId, setcarId] = useState()
-  const [deleteItem, setdeleteItem] = useState()
-  const dispatch = useDispatch()
-  const cartdata = useSelector(state => state.cartData)
-  console.log("cartd",cartdata)
-    const getData = async () => {
-        const data = await axios(`http://localhost:5000/cart`).then((d)=>d.data);
-      console.log(data.Cart[0],"DSd");
-      
-      setcarId(data.Cart[0]._id);
-        setProducts(data.Cart[0].products);
-    }
-    useEffect(() => {
-      getData();
-      dispatch(fetchCartData())
-    }, [deleteItem]);
-  async function handleRemove(item) {
-    console.log(item);
-    setdeleteItem(item);
-    const data = await axios.delete(`http://localhost:5000/cart/${cartId}/delete/${item}`);
-    console.log(data.data)
+  const dispatch = useDispatch();
+  const cartdata = useSelector((state) => state.cartData.data);
+  console.log("cartd", cartdata);
+  
+  const { _id, products, userId } = cartdata;
+  console.log(_id, products, userId);
+
+  useEffect(() => {
+    dispatch(fetchCartData());
+  }, [dispatch]);
+
+   function handleRemove(item) {
+    // console.log("item",item,"id",_id);
+    // const data = await axios.delete(`http://localhost:5000/cart/${_id}/delete/${item}`);
+    dispatch(removeCartItem(_id,item))
+    // console.log(data.data)
+    console.log(1)
   }
 
-  
   return (
     <Box sx={{ width: 1 }}>
-      {productsData.length===0 && <div>Cart is empty</div>}
+      {products?.length === 0 && <div>Cart is empty</div>}
       <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
-        {productsData?.map((item, i) => (
-          <>
-            <Box gridColumn="span 4" key={i}>
+        {products?.map((item, i) => (
+          
+            <Box gridColumn="span 4" key={item._id}>
               <Card sx={{ maxWidth: 345 }}>
                 <CardMedia
                   component="img"
@@ -95,7 +89,7 @@ const Cart = () => {
                 </CardActions>
               </Card>
             </Box>
-          </>
+          
         ))}
       </Box>
     </Box>

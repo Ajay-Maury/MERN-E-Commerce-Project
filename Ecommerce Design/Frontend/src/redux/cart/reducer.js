@@ -3,7 +3,7 @@ import { FETCH_CART_FAILURE, FETCH_CART_REQUEST, FETCH_CART_SUCCESS } from "./ac
 const initState = {
     loading: false,
     error: "",
-    data : []
+    data: [],
 }
 
 export const CartReducer = (state = initState, { type, payload }) => {
@@ -18,7 +18,7 @@ export const CartReducer = (state = initState, { type, payload }) => {
             return { ...state, loading: false, error: payload }
         };
         default: {
-            return { state }
+            return state
         };
             
     }

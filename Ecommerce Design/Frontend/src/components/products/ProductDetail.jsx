@@ -13,6 +13,7 @@ import { Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductById } from "../../redux/productByID/action";
+import { addToCart } from "../../redux/cart/addToCart/action";
 
 
 const ProductDetail = () => {
@@ -34,8 +35,8 @@ const ProductDetail = () => {
       userId : "629f810c42a8105b131a4ae1"
     };
 
-    const cart = axios.post(`http://localhost:5000/cart/create`, payload);
-    console.log("cart",cart)
+    dispatch(addToCart(payload));
+    console.log("cart", payload);
   }
   const { _id, colour, description, image_url, name, price, quantity } =  product;
  
