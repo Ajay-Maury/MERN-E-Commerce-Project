@@ -19,7 +19,8 @@ router.post("/create", async (req, res) => {
         // console.log("cart",cart)
         
             return res.status(201).send({ Cart: cart });
-        } else {
+      }
+      else {
             const cart = await Cart.create(req.body);
             return res.status(201).send({ Cart: cart });
         }

@@ -8,13 +8,38 @@ import ListItemText from "@mui/material/ListItemText";
 import ListItemAvatar from "@mui/material/ListItemAvatar";
 import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
-import { Box, IconButton, ListItemButton } from '@mui/material';
+import { Box, IconButton, ListItemButton, Stack } from '@mui/material';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from '../../redux/products/action';
+import { addToCart } from "../../redux/cart/addToCart/action";
+
+import FavoriteIcon from "@mui/icons-material/Favorite";
+
+// import * as React from "react";
+import { styled } from "@mui/material/styles";
+// import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
+
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Button from "@mui/material/Button";
+// import Typography from "@mui/material/Typography";
+
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: "center",
+  color: theme.palette.text.secondary,
+}));
+
 
 const ProductList = () => {
   let navigate = useNavigate();
@@ -26,62 +51,81 @@ const ProductList = () => {
     dispatch(fetchProduct())
     // getData()
   }, [])
-  const handleClick = (id) => {
-    console.log("check",id)
-    navigate(`./product/${id}`, { replace: false });
+
+    function handleCart(id) {
+    console.log(id)
+    const payload = {
+      products : id,
+      userId : "629f810c42a8105b131a4ae1"
+    };
+
+    dispatch(addToCart(payload));
+    console.log("cart", payload);
+  
   }
   return (
-    <div>
+    <Box
+      sx={{
+        flexGrow: 1,
+      }}
+      width={"100%"}
+    >
       {loading && <div>Loading please wait....</div>}
       {error && <div>{error}</div>}
-      <List
-        sx={{
-          width: "100%",
-          bgcolor: "background.paper",
-          margin:"2% auto",
-          alignItems: "center",
-        }}
-      >
-        {products?.map((ele) => (
-          <Box key={ele._id}>
-            <ListItemButton onClick={()=>handleClick(ele._id)}>
-              <ListItem
-                alignItems="flex-start"
-                fontSize="50px"
-                // secondaryAction={
-                //   <IconButton edge="end" aria-label="delete">
-                //     <DeleteIcon />
-                //   </IconButton>
-                // }
-              >
-                <ListItemAvatar>
-                  <Avatar alt="Remy Sharp" src={ele.image_url} />
-                </ListItemAvatar>
-                <ListItemText
-                  primary=  {ele.name}
-                  secondary={
-                    <React.Fragment>
-                      <Typography
-                        sx={{ display: "inline" }}
-                        component="span"
-                        variant="body2"
-                        color="text.primary"
-                      >
-                        REVIEWS
-                      </Typography>
-                      <br />
-                      <span>{ele.description}</span><br />
-                      <span>Rs. {ele.price}</span>
-                    </React.Fragment>
-                  }
-                />
-              </ListItem>
-            </ListItemButton>
-            <Divider component="li" />
-          </Box>
+      <Grid justifyContent={"center"} container spacing={2}>
+        {products?.map((elem) => (
+          <Grid item xs={3} key={elem.id}>
+            <Card sx={{ maxWidth: 345, height: 400, margin: 1.5 }}>
+              <CardMedia
+                component='img'
+                height='200'
+                className='productimgdiv'
+                image={elem.image_url}
+                alt='green iguana'
+                onClick={() => {
+                  console.log(elem._id);
+                  navigate(`./product/${elem._id}`);
+                }}
+              />
+              <CardContent sx={{ height: 120, padding: 1 }}>
+                <Typography
+                  gutterBottom
+                  variant='p'
+                  component='div'
+                  sx={{ height: 90 }}
+                >
+                  {elem.name}
+                </Typography>
+                <Stack justifyContent={"space-between"} direction={"row"}>
+                  <span className='productpricetag' variant='h6'>
+                    Price : {elem.price} Rs
+                  </span>
+                  <FavoriteIcon
+                  // onClick={() => {
+                  //   if (!userId) navigate("/login");
+                  //   AddtoWishList(elem._id);
+                  // }}
+                  ></FavoriteIcon>
+                </Stack>
+              </CardContent>
+              <CardActions sx={{ justifyContent: "space-between" }}>
+                <Button
+                  // onClick={() => {
+                  //   if (!userId) navigate("/login");
+                  //   AddtoCart(ele._id);
+                  // }}
+                  onClick={()=>handleCart(elem._id)}
+                  variant='contained'
+                  fullWidth
+                >
+                  Add To Cart
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
         ))}
-      </List>
-    </div>
+      </Grid>
+    </Box>
   );
 }
 

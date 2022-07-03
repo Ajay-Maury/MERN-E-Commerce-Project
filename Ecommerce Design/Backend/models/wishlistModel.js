@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const WishlistSchema = new mongoose.Schema({
-  productId: [
+  products: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "product",
@@ -11,7 +11,7 @@ const WishlistSchema = new mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "user",
-      required: fatruelse,
+      required: true,
     },
 });
 
