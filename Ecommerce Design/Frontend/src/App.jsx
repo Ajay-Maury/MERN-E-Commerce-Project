@@ -19,6 +19,7 @@ import CategoryCreate from './components/admin/CategoryCreate'
 import Cart from "./components/products/Cart";
 import { Provider } from 'react-redux'
 import store from "./redux/store"
+import Wishlist from './components/products/Wishlist'
 
 
 
@@ -42,6 +43,7 @@ function App() {
           <Route path="/products" element={<ProductDetail />} />
           <Route path="/brands" element={<BrandsList />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path='wishlist' element={<Wishlist/>} />
         </Routes>
       </Provider>
     </div>

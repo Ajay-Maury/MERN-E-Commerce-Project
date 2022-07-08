@@ -10,7 +10,7 @@ const initState = {
   removeWishlistItemError: "",
 };
 
-export const RemoveWishlistItemReducer = (
+export const removeWishlistItemReducer = (
   state = initState,
   { type, payload }
 ) => {

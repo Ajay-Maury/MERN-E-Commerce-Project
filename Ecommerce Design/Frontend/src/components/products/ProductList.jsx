@@ -30,6 +30,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
+import ProductCard from './ProductCard';
 // import Typography from "@mui/material/Typography";
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -42,7 +43,6 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 const ProductList = () => {
-  let navigate = useNavigate();
   const dispatch = useDispatch()
   const {loading,error,products} = useSelector(state => state.allProducts)
   // console.log(loading, error, products, "Prod");
@@ -52,17 +52,6 @@ const ProductList = () => {
     // getData()
   }, [])
 
-    function handleCart(id) {
-    console.log(id)
-    const payload = {
-      products : id,
-      userId : "629f810c42a8105b131a4ae1"
-    };
-
-    dispatch(addToCart(payload));
-    console.log("cart", payload);
-  
-  }
   return (
     <Box
       sx={{
@@ -74,54 +63,8 @@ const ProductList = () => {
       {error && <div>{error}</div>}
       <Grid justifyContent={"center"} container spacing={2}>
         {products?.map((elem) => (
-          <Grid item xs={3} key={elem.id}>
-            <Card sx={{ maxWidth: 345, height: 400, margin: 1.5 }}>
-              <CardMedia
-                component='img'
-                height='200'
-                className='productimgdiv'
-                image={elem.image_url}
-                alt='green iguana'
-                onClick={() => {
-                  console.log(elem._id);
-                  navigate(`./product/${elem._id}`);
-                }}
-              />
-              <CardContent sx={{ height: 120, padding: 1 }}>
-                <Typography
-                  gutterBottom
-                  variant='p'
-                  component='div'
-                  sx={{ height: 90 }}
-                >
-                  {elem.name}
-                </Typography>
-                <Stack justifyContent={"space-between"} direction={"row"}>
-                  <span className='productpricetag' variant='h6'>
-                    Price : {elem.price} Rs
-                  </span>
-                  <FavoriteIcon
-                  // onClick={() => {
-                  //   if (!userId) navigate("/login");
-                  //   AddtoWishList(elem._id);
-                  // }}
-                  ></FavoriteIcon>
-                </Stack>
-              </CardContent>
-              <CardActions sx={{ justifyContent: "space-between" }}>
-                <Button
-                  // onClick={() => {
-                  //   if (!userId) navigate("/login");
-                  //   AddtoCart(ele._id);
-                  // }}
-                  onClick={()=>handleCart(elem._id)}
-                  variant='contained'
-                  fullWidth
-                >
-                  Add To Cart
-                </Button>
-              </CardActions>
-            </Card>
+          <Grid item xs={3} key={elem._id}>
+            <ProductCard elem = {elem}/>
           </Grid>
         ))}
       </Grid>

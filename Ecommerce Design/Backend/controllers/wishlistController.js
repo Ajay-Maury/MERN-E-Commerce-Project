@@ -4,8 +4,12 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const products = await Wishlist.find().populate("products").lean().exec();
-    return res.status(200).send({ products });
+    const user  = req.params.id
+    const wishlist = await Wishlist.find()
+      .populate("products")
+      .lean()
+      .exec();
+    return res.status(200).send({Wishlist : wishlist });
   } catch (error) {
     return res.status(500).send({ Error: error.message });
   }
@@ -17,13 +21,16 @@ router.post("/", async (req, res) => {
     const productId = req.body.products;
 
     const check = await Wishlist.findOne({ userId: User }).lean().exec();
+    console.log(User,productId,check)
     if (check) {
       const wish = await Wishlist.findByIdAndUpdate(check._id, {
         $push: { products: productId },
       });
+      console.log(wish,"In")
       return res.status(201).send({ Wishlist: wish });
     } else {
       const wish = await Wishlist.create(req.body);
+      console.log(wish,"Out")
       return res.status(201).send({ Wishlist: wish });
     }
   } catch (error) {

@@ -28,8 +28,11 @@ const getWishlistProductsFailure = (error) => {
 export const getWishlistProducts = (id) => (dispatch) => {
   dispatch(getWishlistProductsRequest());
   axios
-    .get("http://localhost:5000/wishlist")
-    .then((res) => dispatch(getWishlistProductsSuscess(res.data)))
+    .get(`http://localhost:5000/wishlist/${id}`)
+    .then((res) => {
+      console.log(res.data,"FETCH")
+      dispatch(getWishlistProductsSuscess(res.data))
+    })
     .catch((err) => dispatch(getWishlistProductsFailure(err.message)));
 };
 

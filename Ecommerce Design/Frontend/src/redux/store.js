@@ -8,13 +8,19 @@ import { SingleProductReducer } from "./productByID/reducer";
 import { CartReducer } from "./cart/reducer";
 import { AddToCartReducer } from "./cart/addToCart/reducer";
 import { RemoveCartItemReducer } from "./cart/removeFromCart/reducer";
+import { WishlistReducer } from "./wishlist/reducer";
+import { AddToWishListReducer } from "./wishlist/addToWishlist/reducer";
+import { removeWishlistItemReducer } from "./wishlist/removeFromWishlist/reducer";
 
 const root_reducer = combineReducers({
   allProducts: productReducer,
-    singleProduct: SingleProductReducer,
+  singleProduct: SingleProductReducer,
   cartData: CartReducer,
   addCart: AddToCartReducer,
-  removeCartItem : RemoveCartItemReducer,
+  removeCartItem: RemoveCartItemReducer,
+  wishlistData: WishlistReducer,
+  addToWishlist: AddToWishListReducer,
+  removeFromWishlist: removeWishlistItemReducer,
 });
 
 const store = createStore(
