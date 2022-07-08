@@ -25,15 +25,29 @@ const getWishlistProductsFailure = (error) => {
 };
 
 
-export const getWishlistProducts = (id) => (dispatch) => {
-  dispatch(getWishlistProductsRequest());
-  axios
-    .get(`http://localhost:5000/wishlist/${id}`)
-    .then((res) => {
-      console.log(res.data,"FETCH")
-      dispatch(getWishlistProductsSuscess(res.data))
-    })
-    .catch((err) => dispatch(getWishlistProductsFailure(err.message)));
+// export const getWishlistProducts  = () => {
+//   return function (dispatch) {
+//     dispatch(getWishlistProductsRequest());
+//     axios
+//       .get(`http://localhost:5000/wishlist/${id}`)
+//       .then((res) => {
+//         console.log(res.data, "FETCH")
+//         dispatch(getWishlistProductsSuscess(res.data))
+//       })
+//       .catch((err) => dispatch(getWishlistProductsFailure(err.message)));
+//   }
+// };
+
+export const getWishlistProducts = (id) => {
+  return function (dispatch) {
+    dispatch(getWishlistProductsRequest());
+    axios(`http://localhost:5000/wishlist`)
+      .then((response) => {
+        console.log("Red",response.data)
+        dispatch(getWishlistProductsSuscess(response.data))}
+      )
+      .catch((error) => dispatch(getWishlistProductsFailure(error.message)));
+  };
 };
 
 
