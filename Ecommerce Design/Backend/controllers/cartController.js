@@ -33,8 +33,8 @@ router.post("/create", async (req, res) => {
 
 router.get("/", async (req, res) => {
   try {
-    // const cart = await Cart.find().populate("products").lean().exec();
-    const cart = await Cart.find().lean().exec();
+    const cart = await Cart.find().populate("products").lean().exec();
+    // const cart = await Cart.find().lean().exec();
     return res.status(200).send({ Cart: cart });
   } catch (error) {
     return res.status(500).send({ error: error.message });

@@ -93,38 +93,7 @@ const ProductDetail = () => {
               </CardActions>
             </Box>
           </Card>
-          {/* <CardMedia component="img" height="140" image={image_url} alt={name} />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {name}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {description}
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Quantity : {quantity}
-          </Typography>
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            sx={{ display: "flex", justifyContent: "space-around" }}
-          >
-            <span>
-              <strong>Colour :</strong>
-              {colour}
-            </span>
-            <span>
-              <strong>Price :</strong>
-              {price}
-            </span>
-          </Typography>
-        </CardContent>
-        <CardActions sx={{ display: "flex", justifyContent: "space-around" }}>
-          <Button size="small" onClick={() => handleCart(_id)}>
-            Add to Cart
-          </Button>
-          <Button size="small">Buy Now</Button>
-        </CardActions> */}
+         
         </Card>
       )}
     </Box>

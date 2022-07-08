@@ -1,100 +1,202 @@
-import axios from 'axios'
-import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
+import axios from "axios";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchCartData} from '../../redux/cart/action';
-import { removeCartItem } from '../../redux/cart/removeFromCart/action';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCartData } from "../../redux/cart/action";
+import { removeCartItem } from "../../redux/cart/removeFromCart/action";
+import { Grid, Stack, Table, TableBody, TableCell, TableContainer, TableRow } from "@mui/material";
+import ProductCard from "./ProductCard";
+import { useNavigate } from "react-router-dom";
+
+import Divider from "@mui/material/Divider";
 
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
 }));
 
-
 const Cart = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const cartdata = useSelector((state) => state.cartData.data);
   console.log("cartd", cartdata);
+  const { data, loading, error } = useSelector((state) => state.cartData);
+  console.log("cartd", data, loading, error);
   const removeItem = useSelector((state) => state.removeCartItem);
-  console.log("Remove",removeItem)
-  
-  const { _id, products, userId } = cartdata;
+  console.log("Remove", removeItem);
+
+  const { _id, products, userId } = data;
   console.log(_id, products, userId);
 
   useEffect(() => {
     dispatch(fetchCartData());
   }, [removeItem]);
 
-   function handleRemove(item) {
+  function handleRemove(item) {
     // console.log("item",item,"id",_id);
-    dispatch(removeCartItem(_id,item))
+    dispatch(removeCartItem(_id, item));
     // console.log(1)
   }
-
+  function handleBuy(item) {}
   return (
-    <Box sx={{ width: 1 }}>
-      {products?.length === 0 && <div>Cart is empty</div>}
-      <Box display="grid" gridTemplateColumns="repeat(12, 1fr)" gap={2}>
-        {products?.map((item, i) => (
-          
-            <Box gridColumn="span 4" key={item._id}>
-              <Card sx={{ maxWidth: 345 }}>
+    <Box sx={{ display: "flex", width: "100%" }}>
+      <Box sx={{ width: "60%", padding: "2%" }}>
+        {loading && <div>Loading please wait....</div>}
+        {error && <div>{error}</div>}
+        {products?.length === 0 && (
+          <div>
+            <h3>Cart is Empty</h3>
+          </div>
+        )}
+        <Grid justifyContent={"center"} container spacing={2}>
+          {products?.map((elem, i) => (
+            <Card
+              key={i}
+              variant='outlined'
+              sx={{ maxWidth: 600, height: "320", margin: "3% auto" }}
+            >
+              <Card sx={{ display: "flex" }}>
                 <CardMedia
-                  component="img"
-                  alt={item.name}
-                  height="140"
-                  image={item.image_url}
+                  component='img'
+                  sx={{ width: 200, height: 180, margin: "auto" }}
+                  image={elem.image_url}
+                  alt={elem.name}
+                  onClick={() => {
+                    console.log("elem._id", elem._id);
+                    navigate(`../product/${elem._id}`);
+                  }}
                 />
-                <CardContent>
-                  <Typography gutterBottom variant="h4" component="div">
-                    {item.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {item.description}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
+                <Box sx={{ display: "flex", flexDirection: "column" }}>
+                  <CardContent sx={{ flex: "1 0 auto" }}>
+                    <Typography component='div' variant='h6'>
+                      {elem.name}
+                    </Typography>
+                    {/* <Typography
+                      variant='subtitle1'
+                      color='text.secondary'
+                      component='div'
+                    >
+                      {description}
+                    </Typography> */}
+                    {/* <Typography variant='body2' color='text.secondary'>
+                  Quantity : {quantity}
+                </Typography> */}
+                    <Typography
+                      variant='body2'
+                      color='text.secondary'
+                      sx={{ display: "flex", justifyContent: "space-around" }}
+                    >
+                      <span>
+                        <strong>Price :</strong>
+                        {elem.price}
+                      </span>
+                      <span>
+                        <strong>Colour :</strong>
+                        {elem.colour}
+                      </span>
+                    </Typography>
+                  </CardContent>
+                  <CardActions
                     sx={{ display: "flex", justifyContent: "space-around" }}
                   >
-                    <span>
-                      <strong>Colour :</strong>
-                      {item.colour}
-                    </span>
-                    <span>
-                      <strong>Price :</strong>
-                      {item.price}
-                    </span>
-                  </Typography>
-                </CardContent>
-                <CardActions
-                  sx={{ display: "flex", justifyContent: "space-around" }}
-                >
-                  <Button size="small" onClick={() => handleRemove(item._id)}>
-                    Remove
-                  </Button>
-                  <Button size="small">Buy Now</Button>
-                </CardActions>
+                    <Button
+                      size='small'
+                      variant='contained'
+                      onClick={() => handleRemove(elem._id)}
+                    >
+                      Remove Item
+                    </Button>
+                    {/* <Button size='small'>Buy Now</Button> */}
+                  </CardActions>
+                </Box>
               </Card>
-            </Box>
-          
-        ))}
+            </Card>
+          ))}
+        </Grid>
+      </Box>
+      <Divider orientation='vertical' flexItem>
+        Price
+      </Divider>
+      <Box sx={{ width: "40%" }}>
+        <Typography
+          variant='h5'
+          color='text.secondary'
+          sx={{ display: "flex", justifyContent: "space-around" }}
+        >
+          {" "}
+          Price Details
+        </Typography>
+        <TableContainer>
+          <Table aria-label='simple table'>
+            <TableBody>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component='th' scope='row'>
+                  Price ({products?.length} items) :
+                </TableCell>
+                <TableCell align='right'>0</TableCell>
+              </TableRow>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component='th' scope='row'>
+                  Coupen:
+                </TableCell>
+                <TableCell align='right'>
+                  {" "}
+                  <input
+                    disabled={products?.length === 0}
+                    type='text'
+                    name='coupen'
+                    id='coupen'
+                    placeholder='Enter coupen'
+                  />{" "}
+                  <br />
+                  <input
+                    type='submit'
+                    value='Apply Coupen'
+                    disabled={products?.length === 0}
+                  />
+                </TableCell>
+              </TableRow>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component='th' scope='row'>
+                  Discount :
+                </TableCell>
+                <TableCell align='right'>0</TableCell>
+              </TableRow>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component='th' scope='row'>
+                  Total Price :
+                </TableCell>
+                <TableCell align='right'>0</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+        
       </Box>
     </Box>
+             
   );
-}
+};
 
-export default Cart
+export default Cart;
