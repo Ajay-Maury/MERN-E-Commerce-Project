@@ -146,61 +146,65 @@ const Cart = () => {
             {" "}
             Price Details
           </Typography>
-          <TableContainer>
-            <Table aria-label='simple table'>
-              <TableBody>
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component='th' scope='row'>
-                    Price ({TotalProducts} items) :
-                  </TableCell>
-                  <TableCell align='right'>{TotalPrice}</TableCell>
-                </TableRow>
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component='th' scope='row'>
-                    Coupen:
-                  </TableCell>
-                  <TableCell align='right'>
-                    {" "}
-                    <input
-                      disabled={Data?.length === 0}
-                      type='text'
-                      name='coupen'
-                      id='coupen'
-                      placeholder='Enter coupen "offer20"'
-                      onChange={(e) => setCoupen(e.target.value)}
-                    />{" "}
-                    <br />
-                    <input
-                      onClick={handleDiscount}
-                      type='submit'
-                      value='Apply Coupen'
-                      disabled={Data?.length === 0}
-                    />
-                  </TableCell>
-                </TableRow>
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component='th' scope='row'>
-                    Discount :
-                  </TableCell>
-                  <TableCell align='right'>{discount}</TableCell>
-                </TableRow>
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell component='th' scope='row'>
-                    Total Price :
-                  </TableCell>
-                  <TableCell align='right'>{TotalPrice - discount}</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+          
+          <Box sx={{ margin: "2%" }}>
+            <TableContainer>
+              <Table aria-label='simple table'>
+                <TableBody>
+                  <TableRow
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component='th' scope='row'>
+                      Price ({TotalProducts} items) :
+                    </TableCell>
+                    <TableCell align='right'>{TotalPrice}</TableCell>
+                  </TableRow>
+                  <TableRow
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component='th' scope='row'>
+                      Coupen:
+                    </TableCell>
+                    <TableCell align='right'>
+                      {" "}
+                      <input
+                        disabled={Data?.length === 0}
+                        type='text'
+                        name='coupen'
+                        id='coupen'
+                        placeholder='Enter coupen "offer20"'
+                        onChange={(e) => setCoupen(e.target.value)}
+                      />{" "}
+                      <br />
+                      <input
+                        onClick={handleDiscount}
+                        type='submit'
+                        value='Apply Coupen'
+                        disabled={Data?.length === 0}
+                      />
+                    </TableCell>
+                  </TableRow>
+                  <TableRow
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component='th' scope='row'>
+                      Discount :
+                    </TableCell>
+                    <TableCell align='right'>{discount}</TableCell>
+                  </TableRow>
+                  <TableRow
+                    sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                  >
+                    <TableCell component='th' scope='row'>
+                      Total Price :
+                    </TableCell>
+                    <TableCell align='right'>{TotalPrice - discount}</TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
+          <Button variant='contained'>Place Order</Button>
         </Box>
       </Box>
     </>
