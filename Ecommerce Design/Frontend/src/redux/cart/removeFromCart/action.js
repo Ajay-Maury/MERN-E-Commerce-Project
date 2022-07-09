@@ -24,7 +24,7 @@ const removeCartItemFailure = (error) => {
   };
 };
 
-export const removeCartItem = (cartId, itemId) => (dispatch) => {
+export const getremoveCartItem = (cartId, itemId) => (dispatch) => {
   console.log("cartId, itemId", cartId, itemId);
   dispatch(removeCartItemRequest());
   axios

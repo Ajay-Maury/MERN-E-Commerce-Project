@@ -86,14 +86,17 @@ const ProductDetail = () => {
               <CardActions
                 sx={{ display: "flex", justifyContent: "space-around" }}
               >
-                <Button size='small' onClick={() => handleCart(_id)}>
+                <Button
+                  size='small'
+                  variant='contained'
+                  onClick={() => handleCart(_id)}
+                >
                   Add to Cart
                 </Button>
-                <Button size='small'>Buy Now</Button>
+                {/* <Button size='small'>Buy Now</Button> */}
               </CardActions>
             </Box>
           </Card>
-         
         </Card>
       )}
     </Box>

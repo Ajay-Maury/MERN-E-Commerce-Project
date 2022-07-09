@@ -17,7 +17,7 @@ import { addToWishlist } from "../../redux/wishlist/addToWishlist/action";
 const ProductCard = ({ elem }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  console.log("elem",elem)
+  // console.log("elem",elem)
 
   function handleCart(id) {
     console.log(id);

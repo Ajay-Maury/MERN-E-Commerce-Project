@@ -35,7 +35,14 @@ router.get("/", async (req, res) => {
   try {
     const cart = await Cart.find().populate("products").lean().exec();
     // const cart = await Cart.find().lean().exec();
-    return res.status(200).send({ Cart: cart });
+    let TotalPrice = 0
+    let Products = cart[0].products
+    let TotalProducts = Products.length;
+    for (let i = 0; i < Products.length; i++) {
+      TotalPrice += Products[i].price;
+    }
+    // console.log(Products,TotalPrice,TotalProducts);
+    return res.status(200).send({ Cart: cart,TotalPrice,TotalProducts});
   } catch (error) {
     return res.status(500).send({ error: error.message });
   }
@@ -43,7 +50,14 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const cart = await Cart.findById(req.params.id).lean().exec();
-    return res.status(200).send({ Cart: cart });
+    let TotalPrice = 0
+    let Products = cart[0].products
+    let TotalProducts = Products.length;
+    for (let i = 0; i < Products.length; i++) {
+      TotalPrice += Products[i].price;
+    }
+    // console.log(Products,TotalPrice,TotalProducts);
+    return res.status(200).send({ Cart: cart,TotalPrice,TotalProducts });
   } catch (error) {
     return res.status(500).send({ error: error.message });
   }

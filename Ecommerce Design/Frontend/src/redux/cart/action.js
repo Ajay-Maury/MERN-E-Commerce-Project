@@ -31,7 +31,19 @@ export const fetchCartData = () => {
   return function (dispatch) {
     dispatch(fetchCartRequest());
     axios(`http://localhost:5000/cart`)
-      .then((response) => dispatch(fetchCartSuscess(response.data.Cart[0])))
+      .then((response) => {
+        // console.log("RDE", response.data);
+        dispatch(
+          fetchCartSuscess({
+            Data: response.data.Cart[0].products,
+            Id: response.data.Cart[0]._id,
+            userId: response.data.Cart[0].userId,
+            TotalPrice : response.data.TotalPrice,
+            TotalProducts : response.data.TotalProducts,
+          })
+        )
+      }
+      )
       .catch((error) => dispatch(fetchCartFailure(error.message)));
   };
 };

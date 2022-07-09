@@ -66,19 +66,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function Navbar() {
   const [isLogin, setIsLogin] = React.useState(false);
   const dispatch = useDispatch();
-  // const CartProduct = useSelector((state) => state.cartData.data);
+  const { data, loading, error } = useSelector((state) => state.cartData);
   // const Wishlist = useSelector((state) => state.wishlistData.data);
-  // console.log("CartProduct", CartProduct);
+  const {TotalProducts} = data
+  console.log("CartProduct", TotalProducts);
   // console.log("Wishlist", Wishlist);
-  const CartProductCount = 3;
   const WishlistCount = 9;
-  // const ab: '629f810c42a8105b131a4ae1';
   // console.log("www", WishlistCount);
-  // console.log("CO", CartProduct)
-  // React.useEffect(() => {
-  //   dispatch(fetchCartData());
-  //   dispatch(getWishlistProducts("629f810c42a8105b131a4ae1"));
-  // }, []);
+  React.useEffect(() => {
+    dispatch(fetchCartData());
+    // dispatch(getWishlistProducts("629f810c42a8105b131a4ae1"));
+  }, [TotalProducts]);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -170,7 +168,7 @@ export default function Navbar() {
             aria-label='show 17 new notifications'
             color='inherit'
           >
-            <Badge badgeContent={CartProductCount} color='error'>
+            <Badge badgeContent={TotalProducts} color='error'>
               <ShoppingCartOutlinedIcon />
             </Badge>
           </IconButton>
@@ -256,7 +254,7 @@ export default function Navbar() {
               aria-label='show 17 new notifications'
               color='inherit'
             >
-              <Badge badgeContent={CartProductCount} color='error'>
+              <Badge badgeContent={TotalProducts} color='error'>
                 <Link to='/cart'>
                   <ShoppingCartOutlinedIcon />
                 </Link>
