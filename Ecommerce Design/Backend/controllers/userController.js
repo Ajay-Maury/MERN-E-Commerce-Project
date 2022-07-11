@@ -148,10 +148,11 @@ router.delete("/:id", async (req, res) => {
 });
 router.get("/:id/address", async (req, res) => {
   try {
-    const address = await User.findById(req.params.id)
+    let address = await User.findById(req.params.id)
       .populate({ path: "addresses" })
       .lean()
       .exec();
+    address = address.addresses;
     return res.status(200).send({ address: address });
   } catch (error) {
     return res.status(500).send({ error: error.message });

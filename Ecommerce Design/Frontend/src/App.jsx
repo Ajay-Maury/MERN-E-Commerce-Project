@@ -20,6 +20,8 @@ import Cart from "./components/products/Cart";
 import { Provider } from 'react-redux'
 import store from "./redux/store"
 import Wishlist from './components/products/Wishlist'
+import UserAddAddress from './components/user/UserAddAddress'
+import Payment from './components/Payment'
 
 
 
@@ -39,11 +41,13 @@ function App() {
           <Route path="/user/signup" element={<UserSignup />} />
           <Route path="/user/login" element={<UserLogin />} />
           <Route path="/user/profile" element={<UserProfile />} />
+          <Route path="/user/:id/address" element={<UserAddAddress />} />
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/products" element={<ProductDetail />} />
           <Route path="/brands" element={<BrandsList />} />
           <Route path="/cart" element={<Cart />} />
           <Route path='wishlist' element={<Wishlist/>} />
+          <Route path='order/payment' element={<Payment/>} />
         </Routes>
       </Provider>
     </div>

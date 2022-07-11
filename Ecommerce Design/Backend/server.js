@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose")
+const mongoose = require("mongoose")
 const app = require("./index")
 require("dotenv").config()
 const PORT = process.env.PORT || 5000
