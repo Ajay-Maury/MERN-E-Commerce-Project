@@ -20,7 +20,7 @@ router.get("/:userId", async (req, res) => {
     }
 })
 
-router.get("/:userId/:orderId", async (req, res) => {
+router.get("/:orderId", async (req, res) => {
     try {
         const order = await Order.findById(req.params.orderId).lean().exec()
         return res.status(200).send({Order:order})

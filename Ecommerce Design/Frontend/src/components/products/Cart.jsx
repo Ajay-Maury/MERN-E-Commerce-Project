@@ -19,6 +19,7 @@ import ProductCard from "./ProductCard";
 import { useNavigate } from "react-router-dom";
 
 import Divider from "@mui/material/Divider";
+import { addToOrder } from "../../redux/order/action";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -57,6 +58,16 @@ const Cart = () => {
     if (coupen === "offer20") {
       setDiscount((TotalPrice*20)/100)
     }
+  }
+  function handleOrder() {
+   const payload = {
+      userId,
+      products: Data?.map((e)=>e._id),
+      discount,
+      price: TotalPrice,
+      totalAmout: TotalPrice - discount,
+    };
+    dispatch(addToOrder(payload));
   }
   return (
     <>
@@ -204,7 +215,7 @@ const Cart = () => {
               </Table>
             </TableContainer>
           </Box>
-          <Button variant='contained'>Place Order</Button>
+          <Button variant='contained'onClick={handleOrder}>Place Order</Button>
         </Box>
       </Box>
     </>
