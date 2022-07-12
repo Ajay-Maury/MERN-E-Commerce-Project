@@ -30,7 +30,7 @@ const fetchSingleUserSuscess = (data) => {
 
 export const fetchSingleUserData = (userId) => (dispatch) => {
   dispatch(fetchSingleUserRequest());
-  axios(`http://localhost:5000/user/${userId}`)
+  axios(`https://mern-e-commerce-api-v-0.herokuapp.com/user/${userId}`)
     .then((response) => {
       dispatch(fetchSingleUserSuscess(response.data));
     })
@@ -61,7 +61,7 @@ const fetchAddressSuscess = (data) => {
 
 export const fetchSingleUserAddress = (userId) => (dispatch) => {
   dispatch(fetchAddressRequest());
-  axios(`http://localhost:5000/user/${userId}/address`)
+  axios(`https://mern-e-commerce-api-v-0.herokuapp.com/user/${userId}/address`)
     .then((response) => {
       dispatch(fetchAddressSuscess(response.data));
     })

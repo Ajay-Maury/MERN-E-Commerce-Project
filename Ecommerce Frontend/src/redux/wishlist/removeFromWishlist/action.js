@@ -27,7 +27,7 @@ const removeWishlistFailure = (error) => {
 export const removeFromWishlist = (wishlistId,itemId) => (dispatch) => {
   dispatch(removeWishlistRequest());
   axios
-    .delete(`http://localhost:5000/cart/${wishlistId}/delete/${itemId}`)
+    .delete(`https://mern-e-commerce-api-v-0.herokuapp.com/cart/${wishlistId}/delete/${itemId}`)
     .then((res) => dispatch(removeWishlistSuscess(res.data)))
     .catch((error) => dispatch(removeWishlistFailure(error.message)));
 };

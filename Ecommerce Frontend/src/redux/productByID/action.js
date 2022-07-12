@@ -29,7 +29,7 @@ const getSingleProductFailure = (error) => {
 
 export const fetchProductById = (id) => (dispatch) => {     
     dispatch(getSingleProductRequest());
-    axios(`http://localhost:5000/products/${id}`).then(response => {
+    axios(`https://mern-e-commerce-api-v-0.herokuapp.com/products/${id}`).then(response => {
         dispatch(getSingleProductSusces(response.data))
     }).catch(error => {
         dispatch(getSingleProductFailure(error.message))

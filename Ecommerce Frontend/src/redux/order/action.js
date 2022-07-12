@@ -34,7 +34,7 @@ const fetchSingleOrderSuscess = (data) => {
 
 export const fetchSingleOrderData = (orderId) => (dispatch) => {
   dispatch(fetchSingleOrderRequest());
-  axios(`http://localhost:5000/order/${orderId}`)
+  axios(`https://mern-e-commerce-api-v-0.herokuapp.com/order/${orderId}`)
     .then((response) => {
       dispatch(fetchSingleOrderSuscess(response.data));
     })
@@ -65,7 +65,7 @@ const fetchOrderSuscess = (data) => {
 
 export const fetchUserAllOrders = (userId) => (dispatch) => {
   dispatch(fetchOrderRequest());
-  axios(`http://localhost:5000/order/${userId}`)
+  axios(`https://mern-e-commerce-api-v-0.herokuapp.com/order/${userId}`)
     .then((response) => {
       dispatch(fetchOrderSuscess(response.data));
     })
@@ -96,7 +96,7 @@ const addOrderSuscess = (data) => {
 
 export const addToOrder = (payload) => (dispatch) => {
   dispatch(addOrderRequest());
-  axios.post(`http://localhost:5000/order`,payload)
+  axios.post(`https://mern-e-commerce-api-v-0.herokuapp.com/order`,payload)
     .then((response) => {
       dispatch(addOrderSuscess(response.data));
     })

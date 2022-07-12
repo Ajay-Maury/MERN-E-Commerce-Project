@@ -26,7 +26,7 @@ const addWishlistFailure = (error) => {
 export const addToWishlist = (id) => (dispatch) => {
   dispatch(addWishlistRequest());
   axios
-    .post("http://localhost:5000/wishlist", id)
+    .post("https://mern-e-commerce-api-v-0.herokuapp.com/wishlist", id)
     .then((res) => dispatch(addWishlistSuscess(res.data)))
     .catch((err) => dispatch(addWishlistFailure(err.message)));
 };

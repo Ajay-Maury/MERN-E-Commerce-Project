@@ -27,7 +27,7 @@ const addCartFailure = (error) => {
 export const addToCart = (payload) => (dispatch) => {
   dispatch(addCartRequest());
   axios
-    .post(`http://localhost:5000/cart/create`, payload)
+    .post(`https://mern-e-commerce-api-v-0.herokuapp.com/cart/create`, payload)
     .then((response) => dispatch(addCartSuscess(response.data)))
     .catch((error) => dispatch(addCartFailure(error.message)));
 };

@@ -30,7 +30,7 @@ const fetchCartFailure = (error) => {
 export const fetchCartData = () => {
   return function (dispatch) {
     dispatch(fetchCartRequest());
-    axios(`http://localhost:5000/cart`)
+    axios(`https://mern-e-commerce-api-v-0.herokuapp.com/cart`)
       .then((response) => {
         // console.log("RDE", response.data);
         dispatch(

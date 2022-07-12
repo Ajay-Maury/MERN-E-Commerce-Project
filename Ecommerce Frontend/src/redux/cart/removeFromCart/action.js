@@ -28,7 +28,7 @@ export const getremoveCartItem = (cartId, itemId) => (dispatch) => {
   console.log("cartId, itemId", cartId, itemId);
   dispatch(removeCartItemRequest());
   axios
-    .delete(`http://localhost:5000/cart/${cartId}/delete/${itemId}`)
+    .delete(`https://mern-e-commerce-api-v-0.herokuapp.com/cart/${cartId}/delete/${itemId}`)
     .then((response) => dispatch(removeCartItemSuscess(response.data)))
     .catch((error) => dispatch(removeCartItemFailure(error.message)));
 };

@@ -30,7 +30,7 @@ export const fetchProductSuscess = (data) => {
 export const fetchProduct= () => {
     return function (dispatch) {
         dispatch(fetchProductRequest())
-        axios(`http://localhost:5000/products`)
+        axios(`https://mern-e-commerce-api-v-0.herokuapp.com/products`)
           .then((res) => {
             // Response data in the array of products
               console.log(res)

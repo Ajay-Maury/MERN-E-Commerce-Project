@@ -29,7 +29,7 @@ const getWishlistProductsFailure = (error) => {
 //   return function (dispatch) {
 //     dispatch(getWishlistProductsRequest());
 //     axios
-//       .get(`http://localhost:5000/wishlist/${id}`)
+//       .get(`https://mern-e-commerce-api-v-0.herokuapp.com/wishlist/${id}`)
 //       .then((res) => {
 //         console.log(res.data, "FETCH")
 //         dispatch(getWishlistProductsSuscess(res.data))
@@ -41,7 +41,7 @@ const getWishlistProductsFailure = (error) => {
 export const getWishlistProducts = (id) => {
   return function (dispatch) {
     dispatch(getWishlistProductsRequest());
-    axios(`http://localhost:5000/wishlist`)
+    axios(`https://mern-e-commerce-api-v-0.herokuapp.com/wishlist`)
       .then((response) => {
         console.log("Red",response.data)
         dispatch(getWishlistProductsSuscess(response.data))}
