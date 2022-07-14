@@ -22,7 +22,11 @@ router.post("/create",async (req, res) => {
 router.get("/", async (req, res) => {
   // console.log(1)
   try {
-    const products = await Product.find({}).populate("brandId").lean().exec();
+    // const queryObj = req.query
+    // console.log("query", req.query._page)
+    // console.log("query 2", req.query._sort);
+    // let sortQuery = req.query;
+    const products = await Product.find({}).populate("brandId").sort({price : req.query._sort}).lean().exec();
     return res.status(200).send(products)
   } catch (error) {
     return res.status(500).send("Error :", error.message)

@@ -240,26 +240,28 @@ export default function Navbar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <Link to="/wishlist">
             <IconButton
               size='large'
               aria-label='show 4 new mails'
               color='inherit'
             >
               <Badge badgeContent={WishlistCount} color='error'>
-                <FavoriteRoundedIcon />
+                <FavoriteRoundedIcon sx={{color:"white"}} />
               </Badge>
             </IconButton>
+            </Link>
+                <Link to='/cart'>
             <IconButton
               size='large'
               aria-label='show 17 new notifications'
               color='inherit'
             >
               <Badge badgeContent={TotalProducts} color='error'>
-                <Link to='/cart'>
-                  <ShoppingCartOutlinedIcon />
-                </Link>
+                  <ShoppingCartOutlinedIcon  sx={{color:"white"}} />
               </Badge>
             </IconButton>
+                </Link>
             <IconButton
               size='large'
               aria-label='show 17 new notifications'

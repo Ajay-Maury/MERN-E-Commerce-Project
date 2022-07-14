@@ -49,7 +49,7 @@ const ProductCard = ({ elem }) => {
         image={elem.image_url}
         alt='green iguana'
         onClick={() => {
-          console.log("elem._id",elem._id);
+          console.log("elem._id", elem._id);
           navigate(`./product/${elem._id}`);
         }}
       />
@@ -66,13 +66,16 @@ const ProductCard = ({ elem }) => {
           <span className='productpricetag' variant='h6'>
             Price : {elem.price} Rs
           </span>
-          <FavoriteIcon
-            // onClick={() => {
-            //   if (!userId) navigate("/login");
-            //   AddtoWishList(elem._id);
-            // }}
-            onClick={() => handleWishlist(elem._id)}
-          ></FavoriteIcon>
+          <Button>
+            <FavoriteIcon
+              variant='outlined'
+              // onClick={() => {
+              //   if (!userId) navigate("/login");
+              //   AddtoWishList(elem._id);
+              // }}
+              onClick={() => handleWishlist(elem._id)}
+            ></FavoriteIcon>
+          </Button>
         </Stack>
       </CardContent>
       <CardActions sx={{ justifyContent: "space-between" }}>

@@ -1,37 +1,19 @@
 import React from 'react'
 
-import DeleteIcon from "@mui/icons-material/Delete";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import Divider from "@mui/material/Divider";
-import ListItemText from "@mui/material/ListItemText";
-import ListItemAvatar from "@mui/material/ListItemAvatar";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-import { Box, IconButton, ListItemButton, Stack } from '@mui/material';
+import { Box, IconButton, ListItemButton, MenuItem, Select, Stack } from '@mui/material';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from '../../redux/products/action';
-import { addToCart } from "../../redux/cart/addToCart/action";
-
-import FavoriteIcon from "@mui/icons-material/Favorite";
-
-// import * as React from "react";
 import { styled } from "@mui/material/styles";
-// import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
+import NativeSelect from "@mui/material/NativeSelect";
 
-import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
 import ProductCard from './ProductCard';
-// import Typography from "@mui/material/Typography";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -44,13 +26,17 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const ProductList = () => {
   const dispatch = useDispatch()
-  const {loading,error,products} = useSelector(state => state.allProducts)
-  // console.log(loading, error, products, "Prod");
+  const {loading,error,products} = useSelector(state => state.allProducts);
+  // const [sort,setSort] = useState("")
   
   useEffect(() => {
-    dispatch(fetchProduct())
-    // getData()
+    dispatch(fetchProduct(""))
   }, [])
+  const handleChange = (e) => {
+    // setSort(e.target.value);
+    console.log("sort va",e.target.value)
+    dispatch(fetchProduct(e.target.value ));
+    };
 
   return (
     <Box
@@ -59,12 +45,28 @@ const ProductList = () => {
       }}
       width={"100%"}
     >
-      {loading && <div>Loading please wait....</div>}
-      {error && <div>{error}</div>}
+      {loading && <Box>Loading please wait....</Box>}
+      {error && <Box>{error}</Box>}
+      <Box sx={{ display: "flex" }}>
+        <FormControl sx={{ m: 1, minWidth: 180 }} size='small'>
+          <InputLabel id='demo-select-small'>Sort by Price</InputLabel>
+          <Select
+            labelId='demo-select-small'
+            id='demo-select-small'
+            value=""
+            label='Price'
+            onChange={handleChange}
+          >
+            <MenuItem value={''}>None</MenuItem>
+            <MenuItem value="asc">Low to high</MenuItem>
+            <MenuItem value="desc">High to low</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
       <Grid justifyContent={"center"} container spacing={2}>
         {products?.map((elem) => (
           <Grid item xs={3} key={elem._id}>
-            <ProductCard elem = {elem}/>
+            <ProductCard elem={elem} />
           </Grid>
         ))}
       </Grid>
