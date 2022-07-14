@@ -27,14 +27,11 @@ const Item = styled(Paper)(({ theme }) => ({
 const ProductList = () => {
   const dispatch = useDispatch()
   const {loading,error,products} = useSelector(state => state.allProducts);
-  // const [sort,setSort] = useState("")
   
   useEffect(() => {
     dispatch(fetchProduct(""))
   }, [])
   const handleChange = (e) => {
-    // setSort(e.target.value);
-    console.log("sort va",e.target.value)
     dispatch(fetchProduct(e.target.value ));
     };
 
@@ -48,16 +45,16 @@ const ProductList = () => {
       {loading && <Box>Loading please wait....</Box>}
       {error && <Box>{error}</Box>}
       <Box sx={{ display: "flex" }}>
-        <FormControl sx={{ m: 1, minWidth: 180 }} size='small'>
-          <InputLabel id='demo-select-small'>Sort by Price</InputLabel>
+        <FormControl sx={{ m: 1, minWidth: 150 }} size='small'>
+          <InputLabel id='demo-select-small'>Sort By Price</InputLabel>
           <Select
             labelId='demo-select-small'
             id='demo-select-small'
             value=""
-            label='Price'
+            // label='Price'
             onChange={handleChange}
           >
-            <MenuItem value={''}>None</MenuItem>
+            <MenuItem value="">None</MenuItem>
             <MenuItem value="asc">Low to high</MenuItem>
             <MenuItem value="desc">High to low</MenuItem>
           </Select>
