@@ -12,6 +12,10 @@ export const ADD_ORDER_REQUEST = "ADD_ORDER_REQUEST";
 export const ADD_ORDER_SUCCESS = "ADD_ORDER_SUCCESS";
 export const ADD_ORDER_FAILURE = "ADD_ORDER_FAILURE";
 
+export const UPDATE_ORDER_REQUEST = "UPDATE_ORDER_REQUEST";
+export const UPDATE_ORDER_SUCCESS = "UPDATE_ORDER_SUCCESS";
+export const UPDATE_ORDER_FAILURE = "UPDATE_ORDER_FAILURE";
+
 const fetchSingleOrderRequest = () => {
   return {
     type: FETCH_SINGLE_ORDER_REQUEST,
@@ -102,5 +106,36 @@ export const addToOrder = (payload) => (dispatch) => {
     })
     .catch((error) => {
       dispatch(addOrderFailure(error.message));
+    });
+};
+
+const updateOrderRequest = () => {
+  return {
+    type: UPDATE_ORDER_REQUEST,
+  };
+};
+
+const updateOrderFailure = (error) => {
+  return {
+    type: UPDATE_ORDER_FAILURE,
+    payload: error,
+  };
+};
+
+const updateOrderSuscess = (data) => {
+  return {
+    type: UPDATE_ORDER_SUCCESS,
+    payload: data,
+  };
+};
+
+export const updateOrder = (id,payload) => (dispatch) => {
+  dispatch(updateOrderRequest());
+  axios.patch(`https://mern-e-commerce-api-v-0.herokuapp.com/order/${id}`,payload)
+    .then((response) => {
+      dispatch(updateOrderSuscess(response.data));
+    })
+    .catch((error) => {
+      dispatch(updateOrderFailure(error.message));
     });
 };

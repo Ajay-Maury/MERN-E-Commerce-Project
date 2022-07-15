@@ -44,22 +44,24 @@ const ProductList = () => {
     >
       {loading && <Box>Loading please wait....</Box>}
       {error && <Box>{error}</Box>}
-      <Box sx={{ display: "flex" }}>
-        <FormControl sx={{ m: 1, minWidth: 150 }} size='small'>
-          <InputLabel id='demo-select-small'>Sort By Price</InputLabel>
-          <Select
-            labelId='demo-select-small'
-            id='demo-select-small'
-            value=""
-            // label='Price'
-            onChange={handleChange}
-          >
-            <MenuItem value="">None</MenuItem>
-            <MenuItem value="asc">Low to high</MenuItem>
-            <MenuItem value="desc">High to low</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
+      {!loading && !error && (
+        <Box sx={{ display: "flex" }}>
+          <FormControl sx={{ m: 1, minWidth: 150 }} size='small'>
+            <InputLabel id='demo-select-small'>Sort By Price</InputLabel>
+            <Select
+              labelId='demo-select-small'
+              id='demo-select-small'
+              value=''
+              // label='Price'
+              onChange={handleChange}
+            >
+              <MenuItem value=''>None</MenuItem>
+              <MenuItem value='asc'>Low to high</MenuItem>
+              <MenuItem value='desc'>High to low</MenuItem>
+            </Select>
+          </FormControl>
+        </Box>
+      )}
       <Grid justifyContent={"center"} container spacing={2}>
         {products?.map((elem) => (
           <Grid item xs={3} key={elem._id}>

@@ -11,7 +11,8 @@ import { fetchSingleUserAddress } from '../redux/userData/action';
 
 const Payment = () => {
       const dispatch = useDispatch();
-      const { address } = useSelector((state) => state.userData.address);
+  const { address } = useSelector((state) => state.userData.address);
+  const {}
       console.log("Address", address);
       const userId = "629f810c42a8105b131a4ae1";
 
