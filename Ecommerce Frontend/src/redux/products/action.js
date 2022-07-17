@@ -31,8 +31,8 @@ export const fetchProduct= (sort) => {
   return function (dispatch) {
       console.log("sort redux",sort)
         dispatch(fetchProductRequest())
-        // axios(`https://mern-e-commerce-api-v-0.herokuapp.com/products?_sort=${sort}&_page=${1}`)
-    axios(`http://localhost:5000/products?_sort=${sort}&_page=${1}`)
+        axios(`https://mern-e-commerce-api-v-0.herokuapp.com/products?_sort=${sort}&_page=${1}`)
+    // axios(`http://localhost:5000/products?_sort=${sort}&_page=${1}`)
           .then((res) => {
             // Response data in the array of products
             console.log(res);
