@@ -20,7 +20,9 @@ export const OrderReducer = (state = initState, { type, payload }) => {
             return { ...state, orderPlaced: payload }
         };
         case FETCH_ORDER_REQUEST: {
-            return { ...state,loading:true}
-            }
+            return { ...state, loading: true }
+        };
+        default: return state;
+            
     }
 }

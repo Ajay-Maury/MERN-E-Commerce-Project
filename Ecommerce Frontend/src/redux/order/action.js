@@ -102,6 +102,7 @@ export const addToOrder = (payload) => (dispatch) => {
   dispatch(addOrderRequest());
   axios.post(`https://mern-e-commerce-api-v-0.herokuapp.com/order`,payload)
     .then((response) => {
+      localStorage.setItem("PlacedOrder", JSON.stringify(response.data));
       dispatch(addOrderSuscess(response.data));
     })
     .catch((error) => {
