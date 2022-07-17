@@ -7,7 +7,7 @@ const BrandController = require("./controllers/brandController");
 const CategoryController = require("./controllers/categoryController");
 const CartController = require("./controllers/cartController");
 const WishlistController = require("./controllers/wishlistController");
-const OrderController = require("./controllers/orderController")
+const OrderController = require("./controllers/orderController");
 app.use(express.json());
 app.use(cors());
 
@@ -18,5 +18,6 @@ app.use("/category", CategoryController);
 app.use("/cart", CartController);
 app.use("/wishlist", WishlistController);
 app.use("/order", OrderController);
+app.use("/order/paymentVerification",PaymentVerifyController);
 
 module.exports = app;
