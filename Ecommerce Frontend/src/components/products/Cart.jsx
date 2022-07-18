@@ -68,6 +68,8 @@ const Cart = () => {
       totalAmout: TotalPrice - discount,
     };
     dispatch(addToOrder(payload));
+    // navigate("/order/payment",{replace:false})
+    navigate("/order/address",{replace:false})
   }
   return (
     <>

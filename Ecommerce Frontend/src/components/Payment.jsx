@@ -1,9 +1,10 @@
 import React from 'react'
-import { Box, Button } from '@mui/material'
+import { Box, Button, Divider } from '@mui/material'
 import axios from "axios"
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from 'react';
+import OrderAddress from './OrderAddress';
 
 const Payment = () => {
   const [Order, setOrder] = useState(
@@ -49,15 +50,40 @@ console.log(Order);
   
 
   return (
-    <Box>
-      <h1>Payment</h1>
-      <h3>Price : {Order.Order.price}</h3>
-      <h3>Discount : {Order.Order.discount}</h3>
-      <h3>Total Amount : {Order.Order.totalAmout}</h3>
-      <Button variant='contained' onClick={handlePay}>
-        Pay Now
-      </Button>
-    </Box>
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-around",
+          margin: "2%",
+          width: "100%",
+        }}
+      >
+        {/* <Box sx={{ width: "50%" }}>
+          {" "}
+          <OrderAddress />{" "}
+        </Box>
+        <Divider orientation='vertical' flexItem>
+          Price
+        </Divider> */}
+        <Box sx={{ width: "50%" }}>
+          <h1>Payment</h1>
+          <Box sx={{ padding: "5% 1%" }}>
+            <h3>Price : {Order.Order.price}</h3>
+            <h3>Discount : {Order.Order.discount}</h3>
+            <h3>Total Amount : {Order.Order.totalAmout}</h3>
+          </Box>
+
+          <Button
+            variant='contained'
+            onClick={handlePay}
+            sx={{ margin: "2%", padding: "1%,3%" }}
+          >
+            Pay Now
+          </Button>
+        </Box>
+      </Box>
+    </>
   );
 }
 

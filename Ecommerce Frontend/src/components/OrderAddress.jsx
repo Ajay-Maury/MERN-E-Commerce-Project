@@ -11,9 +11,12 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import AddressCard from './AddressCard';
 import { updateOrder } from '../redux/order/action';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 
 const OrderAddress = () => {
+  const [addressVal, setAddewssVal] = useState("")
+  const navigate = useNavigate()
      const dispatch = useDispatch();
      const { address } = useSelector((state) => state.userData.address);
      console.log("Address", address);
@@ -25,22 +28,26 @@ const OrderAddress = () => {
 
      const handleChange = (e) => {
        // setValue((event.target as HTMLInputElement).value);
-         console.log("Add", e.target.value)
+       console.log("Add", e.target.value)
+       setAddewssVal(e.target.value);
         //  dispatch(updateOrder(userI));
-    };
+  };
+  const handlePayment = () => {
+    navigate("/order/payment",{replace:false})
+  }
   return (
     <Box>
       <Box>
-        <strong>Select Address</strong>
+        <h1>Select Address</h1>
       </Box>
 
-      <FormControl>
+      <FormControl sx={{ padding: "5% 1%" }}>
         <FormLabel id='demo-radio-buttons-group-label'>
-          <strong>Address</strong>
+          <h3>Address</h3>
         </FormLabel>
         <RadioGroup
           aria-labelledby='demo-radio-buttons-group-label'
-          // defaultValue='female'
+          // defaultValue={<AddressCard data={address?.[0]} />}
           onChange={handleChange}
           name='radio-buttons-group'
         >
@@ -54,11 +61,16 @@ const OrderAddress = () => {
           ))}
         </RadioGroup>
       </FormControl>
-      <Link to='/payment'>
-        <Button varient='contained' onClick={handlePayment}>
+
+      <Box>
+        <Button
+          variant='contained'
+          disabled={addressVal==""}
+          onClick={handlePayment}
+        >
           Make Payment
         </Button>
-      </Link>
+      </Box>
     </Box>
   );
 }

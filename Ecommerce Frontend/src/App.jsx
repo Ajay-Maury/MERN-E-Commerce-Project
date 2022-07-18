@@ -22,6 +22,7 @@ import store from "./redux/store"
 import Wishlist from './components/products/Wishlist'
 import UserAddAddress from './components/user/UserAddAddress'
 import Payment from './components/Payment'
+import OrderAddress from './components/OrderAddress'
 
 
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/brands" element={<BrandsList />} />
           <Route path="/cart" element={<Cart />} />
           <Route path='wishlist' element={<Wishlist/>} />
+          <Route path='order/address' element={<OrderAddress/>} />
           <Route path='order/payment' element={<Payment/>} />
         </Routes>
       </Provider>
