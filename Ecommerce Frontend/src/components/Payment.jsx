@@ -30,7 +30,8 @@ console.log(Order);
       description: "Test Transaction",
       image: "https://example.com/your_logo",
       // order_id: Order.Order._id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-      callback_url: "http://localhost:5000/order/paymentVerification",
+      callback_url:
+        "https://mern-e-commerce-api-v-0.herokuapp.com/order/paymentVerification",
       prefill: {
         name: "Ajay Kumar",
         email: "ajay.kumar@example.com",
