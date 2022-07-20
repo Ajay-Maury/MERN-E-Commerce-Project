@@ -5,7 +5,7 @@ const Address = require("../models/addressModel");
 const { body, validationResult } = require("express-validator");
 
 router.post(
-  "/create",
+  "/",
   body("name").trim().not().isEmpty().withMessage("Name is required"),
   body("password").trim().not().isEmpty().withMessage("Password is required"),
   body("email")
@@ -160,21 +160,25 @@ router.get("/:id/address", async (req, res) => {
 });
 
 router.post(
-  "/:id/address/create",
-  body("address_line")
-    .trim()
-    .not()
-    .isEmpty()
-    .withMessage("Address line is required"),
+  "/:id/address",
+  body("name").trim().not().isEmpty().withMessage("Name is required"),
+  body("phone").trim().not().isEmpty().withMessage("Phone is required")
+    .isNumeric()
+    .withMessage("Phone  must be a number"),
+  body("email").trim().not().isEmpty().withMessage("Email is required").isEmail().withMessage("Email is required"),
   body("city").trim().not().isEmpty().withMessage("City is required"),
   body("district").trim().not().isEmpty().withMessage("District is required"),
   body("state").trim().not().isEmpty().withMessage("State is required"),
+  body("buildingName").trim().not().isEmpty().withMessage("Building Name is required"),
+  body("colony").trim().not().isEmpty().withMessage("Colony is required"),
   body("country").trim().not().isEmpty().withMessage("Country is required"),
   body("pinCode")
     .notEmpty()
     .withMessage("Pin code is required")
     .isLength({ min: 6, max: 6 })
-    .withMessage("Pincode shuold be of 6 digit"),
+    .withMessage("Pincode shuold be of 6 digit")
+    .isNumeric()
+    .withMessage("Pin code  must be a number"),
   async (req, res) => {
     // console.log("q")
     try {
@@ -195,20 +199,24 @@ router.post(
 );
 router.patch(
   "/address/edit/:idx",
-  body("address_line")
-    .trim()
-    .not()
-    .isEmpty()
-    .withMessage("Address line is required"),
+ body("name").trim().not().isEmpty().withMessage("Name is required"),
+  body("phone").trim().not().isEmpty().withMessage("Phone is required")
+    .isNumeric()
+    .withMessage("Phone  must be a number"),
+  body("email").trim().not().isEmpty().withMessage("Email is required").isEmail().withMessage("Email is required"),
   body("city").trim().not().isEmpty().withMessage("City is required"),
   body("district").trim().not().isEmpty().withMessage("District is required"),
   body("state").trim().not().isEmpty().withMessage("State is required"),
+  body("buildingName").trim().not().isEmpty().withMessage("Building Name is required"),
+  body("colony").trim().not().isEmpty().withMessage("Colony is required"),
   body("country").trim().not().isEmpty().withMessage("Country is required"),
   body("pinCode")
     .notEmpty()
     .withMessage("Pin code is required")
     .isLength({ min: 6, max: 6 })
-    .withMessage("Pincode shuold be of 6 digit"),
+    .withMessage("Pincode shuold be of 6 digit")
+    .isNumeric()
+    .withMessage("Pin code  must be a number"),
   async (req, res) => {
     try {
       const errors = validationResult(req);

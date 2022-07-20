@@ -15,7 +15,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 const OrderAddress = () => {
-  const [addressVal, setAddewssVal] = useState("")
+  const [addressVal, setAddressVal] = useState("")
   const navigate = useNavigate()
      const dispatch = useDispatch();
      const { address } = useSelector((state) => state.userData.address);
@@ -29,7 +29,7 @@ const OrderAddress = () => {
      const handleChange = (e) => {
        // setValue((event.target as HTMLInputElement).value);
        console.log("Add", e.target.value)
-       setAddewssVal(e.target.value);
+       setAddressVal(e.target.value);
         //  dispatch(updateOrder(userI));
   };
   const handlePayment = () => {
@@ -38,7 +38,7 @@ const OrderAddress = () => {
   return (
     <Box>
       <Box>
-        <h1>Select Address</h1>
+        <h1>Shipping Address</h1>
       </Box>
 
       <FormControl sx={{ padding: "5% 1%" }}>
@@ -63,13 +63,13 @@ const OrderAddress = () => {
       </FormControl>
 
       <Box>
-        <Button
+        {/* <Button
           variant='contained'
           disabled={addressVal==""}
           onClick={handlePayment}
         >
           Make Payment
-        </Button>
+        </Button> */}
       </Box>
     </Box>
   );

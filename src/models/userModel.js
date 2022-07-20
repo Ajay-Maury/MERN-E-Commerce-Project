@@ -7,7 +7,6 @@ const UserSchema = new mongoose.Schema({
   mobile_no: { type: Number, required: true, maxlength: 10, minlength: 10 },
   age: { type: Number, required: true },
   gender: { type: String, required: true, enum: ["Male", "Female", "Others"] },
-  profilePic: { type: String, required: false },
   addresses: [
     {
       type: mongoose.Schema.Types.ObjectId,

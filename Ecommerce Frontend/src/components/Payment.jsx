@@ -54,19 +54,19 @@ console.log(Order);
     <>
       <Box
         sx={{
-          display: "flex",
-          justifyContent: "space-around",
+          // display: "flex",
+          // justifyContent: "space-around",
           margin: "2%",
           width: "100%",
         }}
       >
-        {/* <Box sx={{ width: "50%" }}>
+        <Box sx={{ width: "50%" }}>
           {" "}
           <OrderAddress />{" "}
         </Box>
-        <Divider orientation='vertical' flexItem>
+        <Divider  flexItem>
           Price
-        </Divider> */}
+        </Divider>
         <Box sx={{ width: "50%" }}>
           <h1>Payment</h1>
           <Box sx={{ padding: "5% 1%" }}>
