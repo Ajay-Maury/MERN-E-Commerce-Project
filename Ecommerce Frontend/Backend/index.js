@@ -10,9 +10,14 @@ const WishlistController = require("./controllers/wishlistController");
 const OrderController = require("./controllers/orderController")
 const PaymentController = require("./controllers/paymentController")
 const PaymentVerifyController = require("./controllers/paymentVerification")
+
+const { register, login } = require("./controllers/authController");
 app.use(express.json());
 app.use(cors());
 
+
+app.use("/register", register);
+app.use("/login", login);
 app.use("/user", UserController);
 app.use("/products", ProductController);
 app.use("/brands", BrandController);
