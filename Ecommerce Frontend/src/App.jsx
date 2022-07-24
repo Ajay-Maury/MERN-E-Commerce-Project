@@ -39,8 +39,8 @@ function App() {
           <Route path="/admin/brands/create" element={<BrandCreate />} />
           <Route path="/admin/catogery/create" element={<CategoryCreate />} />
           <Route path="/admin/users" element={<UsersList />} />
-          <Route path="/user/signup" element={<UserSignup />} />
-          <Route path="/user/login" element={<UserLogin />} />
+          <Route path="/signup" element={<UserSignup />} />
+          <Route path="/login" element={<UserLogin />} />
           <Route path="/user/profile" element={<UserProfile />} />
           <Route path="/user/:id/address" element={<UserAddAddress />} />
           <Route path="/product/:id" element={<ProductDetail />} />

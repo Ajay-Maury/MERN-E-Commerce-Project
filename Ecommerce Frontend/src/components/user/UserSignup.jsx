@@ -11,21 +11,23 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 
 const UserSignup = () => {
-  const [user, setUser] = useState("");
-  const [gender, setGender] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [mobile, setMobile] = useState();
-  const [profilePic, setProfilePic] = useState("");
+  const [age,setAge] = useState("");
+  const [gender, setGender] = useState("");
+  const [role, setRole] = useState("user");
 
   async function handleSignUP(e) {
     // e.preventDefault();
     const userDetail = {
-      name: user,
+      name,
       email,
       password,
       mobile_no: mobile,
-      profilePic,
+      gender,
+      role,
     };
     console.log("user", userDetail);
     const data = await axios.post(`http://localhost:5000/user/create`, userDetail);
@@ -50,7 +52,31 @@ const UserSignup = () => {
             required
             onInput={(e) => setUser(e.target.value)}
           />
-          <FormControl sx={{ border: "1px solid gray" }}>
+          <TextField
+            id='demo-helper-text-aligned'
+            label='Email'
+            required
+            onInput={(e) => setUser(e.target.value)}
+          />
+          <TextField
+            id='demo-helper-text-aligned'
+            label='Password'
+            required
+            onInput={(e) => setUser(e.target.value)}
+          />
+          <TextField
+            id='demo-helper-text-aligned'
+            label='Mobile No.'
+            required
+            onInput={(e) => setUser(e.target.value)}
+          />
+          <TextField
+            id='demo-helper-text-aligned'
+            label='Age'
+            required
+            onInput={(e) => setUser(e.target.value)}
+          />
+          <FormControl sx={{textAlign:"left"}}>
             <FormLabel id='demo-row-radio-buttons-group-label'>
               Gender
             </FormLabel>
@@ -58,7 +84,7 @@ const UserSignup = () => {
               row
               aria-labelledby='demo-row-radio-buttons-group-label'
               name='row-radio-buttons-group'
-              onChange={handleChange}
+              // onChange={handleChange}
             >
               <FormControlLabel
                 value='female'
@@ -72,30 +98,7 @@ const UserSignup = () => {
                 label='Other'
               />
             </RadioGroup>
-          </FormControl>
-          <TextField
-            id='demo-helper-text-aligned'
-            label='Email'
-            required
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <TextField
-            id='demo-helper-text-aligned'
-            label='Mobile Number'
-            required
-            onInput={(e) => setMobile(e.target.value)}
-          />
-          <TextField
-            id='demo-helper-text-aligned'
-            label='Password'
-            required
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <TextField
-            id='demo-helper-text-aligned'
-            label='Profile Pic'
-            onChange={(e) => setProfilePic(e.target.value)}
-          />
+          </FormControl>         
         </Stack>
       </Box>
       <Button variant='outlined' onClick={handleSignUP}>

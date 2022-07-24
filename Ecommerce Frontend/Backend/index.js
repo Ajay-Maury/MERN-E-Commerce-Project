@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(cors());
 
 
-app.use("/register", register);
+app.use("/signup", register);
 app.use("/login", login);
 app.use("/user", UserController);
 app.use("/products", ProductController);
