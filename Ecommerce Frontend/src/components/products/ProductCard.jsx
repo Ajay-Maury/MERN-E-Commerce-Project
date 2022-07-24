@@ -18,26 +18,38 @@ const ProductCard = ({ elem }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   // console.log("elem",elem)
+   const isLogin = JSON.parse(localStorage.getItem("LoginData")) || false;
 
   function handleCart(id) {
-    console.log(id);
-    const payload = {
-      products: id,
-      userId: "629f810c42a8105b131a4ae1",
-    };
+    if (isLogin) {
+       console.log(id);
+       const payload = {
+         products: id,
+         userId: isLogin.user._id,
+       };
 
-    dispatch(addToCart(payload));
-    console.log("cart", payload);
+       dispatch(addToCart(payload));
+       console.log("cart", payload);
+    }
+    else {
+      navigate("/login",{replace:true})      
+    }    
   }
   function handleWishlist(id) {
-    console.log(id);
+    if (isLogin){
+ console.log(id);
     const payload = {
       products: id,
-      userId: "629f810c42a8105b131a4ae1",
+      userId: isLogin.user._id,
     };
 
     dispatch(addToWishlist(payload));
     console.log("wishlist", payload);
+    }
+    else {
+  navigate("/login")
+    }
+   
   }
 
   return (

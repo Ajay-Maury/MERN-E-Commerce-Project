@@ -43,8 +43,14 @@ const Cart = () => {
   console.log("cartd", TotalPrice, Data, TotalProducts, Id, userId);
   console.log("cartd", data, loading, error);
   
+  const isLogin = JSON.parse(localStorage.getItem("LoginData")) || false;
+  
+  
   useEffect(() => {
-    dispatch(fetchCartData());
+    if (isLogin) {
+      console.log("CLO",isLogin.user._id)
+      dispatch(fetchCartData(isLogin.user._id));
+    }
      
   }, [removeItem]);
 

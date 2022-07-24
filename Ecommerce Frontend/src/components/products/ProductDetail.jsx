@@ -24,19 +24,24 @@ const ProductDetail = () => {
   );
   console.log("Single", loading, error, product);
   
+  const isLogin = JSON.parse(localStorage.getItem("LoginData")) || false;
 
   useEffect(() => {
     dispatch(fetchProductById(id))
   }, []);
   function handleCart(id) {
-    console.log(id)
-    const payload = {
-      products : id,
-      userId : "629f810c42a8105b131a4ae1"
-    };
+     if (isLogin) {
+       console.log(id);
+       const payload = {
+         products: id,
+         userId: isLogin.user._id,
+       };
 
-    dispatch(addToCart(payload));
-    console.log("cart", payload);
+       dispatch(addToCart(payload));
+       console.log("cart", payload);
+     } else {
+       navigate("/login");
+     }
   }
   const { _id, colour, description, image_url, name, price, quantity } =  product;
  

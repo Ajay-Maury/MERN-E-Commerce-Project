@@ -13,6 +13,7 @@ import { AddToWishListReducer } from "./wishlist/addToWishlist/reducer";
 import { removeWishlistItemReducer } from "./wishlist/removeFromWishlist/reducer";
 import { UserReducer } from "./userData/reducer";
 import { OrderReducer } from "./order/reducer";
+import { AuthReducer } from "./auth/reducer";
 
 const root_reducer = combineReducers({
   allProducts: productReducer,
@@ -25,6 +26,7 @@ const root_reducer = combineReducers({
   removeFromWishlist: removeWishlistItemReducer,
   userData: UserReducer,
   placedOrder: OrderReducer,
+  auth : AuthReducer,
 });
 
 const store = createStore(

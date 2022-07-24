@@ -13,9 +13,12 @@ const generateToken = (user) => {
 const register = router.post(
   "/",
   body("name").trim().not().isEmpty().withMessage("Name is required"),
-  body("password").trim().not().isEmpty().withMessage("Password is required"),
   body("email")
     .isEmail()
+    .withMessage("Email is required")
+    .not()
+    .isEmpty()
+    .withMessage("Email is required")
     .custom(async (value) => {
       const user = await User.findOne({ email: value });
 
@@ -24,7 +27,8 @@ const register = router.post(
       }
       return true;
     }),
-  body("mobile_no")
+  body("password").trim().not().isEmpty().withMessage("Password is required"),
+  body("mobile")
     .trim()
     .not()
     .isEmpty()

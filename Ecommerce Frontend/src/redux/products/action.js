@@ -35,7 +35,7 @@ export const fetchProduct= (sort) => {
     // axios(`http://localhost:5000/products?_sort=${sort}&_page=${1}`)
           .then((res) => {
             // Response data in the array of products
-            console.log(res);
+            // console.log(res);
             const products = res.data;
             dispatch(fetchProductSuscess(products));
           })

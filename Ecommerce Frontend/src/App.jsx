@@ -23,6 +23,8 @@ import Wishlist from './components/products/Wishlist'
 import UserAddAddress from './components/user/UserAddAddress'
 import Payment from './components/Payment'
 import OrderAddress from './components/OrderAddress'
+import CartCounter from './components/products/CartCounter'
+import AllRoutes from './components/Routes/AllRoutes'
 
 
 
@@ -32,25 +34,7 @@ function App() {
     <div className="App">
       <Provider store={store}>
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<AdminPage />} />
-          <Route path="/admin/products/create" element={<ProductCreate />} />
-          <Route path="/admin/brands/create" element={<BrandCreate />} />
-          <Route path="/admin/catogery/create" element={<CategoryCreate />} />
-          <Route path="/admin/users" element={<UsersList />} />
-          <Route path="/signup" element={<UserSignup />} />
-          <Route path="/login" element={<UserLogin />} />
-          <Route path="/user/profile" element={<UserProfile />} />
-          <Route path="/user/:id/address" element={<UserAddAddress />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
-          <Route path="/products" element={<ProductDetail />} />
-          <Route path="/brands" element={<BrandsList />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path='wishlist' element={<Wishlist/>} />
-          <Route path='order/address' element={<OrderAddress/>} />
-          <Route path='order/payment' element={<Payment/>} />
-        </Routes>
+       <AllRoutes/>
       </Provider>
     </div>
   );
