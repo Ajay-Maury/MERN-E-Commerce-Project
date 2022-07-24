@@ -1,10 +1,11 @@
 import { Box } from '@mui/material';
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCartData } from '../../redux/cart/action';
 
 const CartCounter = () => {
     const dispatch = useDispatch();
+    const [count,setCount] = useState(0)
     const { data, loading, error } = useSelector((state) => state.cartData);
     console.log("Count", data)
     const isLogin = JSON.parse(localStorage.getItem("LoginData")) || false;
@@ -13,6 +14,7 @@ const CartCounter = () => {
         if (isLogin) {
             if (data?.Data?.length === 0) {
                 dispatch(fetchCartData(isLogin.user._id))
+                setCount = data?.Data?.length;
             }    
         }
 
@@ -20,7 +22,7 @@ const CartCounter = () => {
     },[dispatch,data?.Data?.length])
   return (
       <Box>
-          {data?.Data?.length ? data?.Data?.length : 0}
+          {count}
     </Box>
   );
 }
