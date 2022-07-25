@@ -184,7 +184,7 @@ export default function Navbar() {
       onClose={handleMobileMenuClose}
     >
       <Link to='/wishlist'>
-        <MenuItem>
+        <MenuItem >
           <IconButton
             size='large'
             // aria-label='show 4 new mails'
