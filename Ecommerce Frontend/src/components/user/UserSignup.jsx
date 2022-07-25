@@ -34,7 +34,7 @@ const UserSignup = () => {
     };
     console.log("user", userDetail);
     const data = axios
-      .post(`http://localhost:5000/signup`, userDetail)
+      .post(`https://mern-e-commerce-api-v-0.herokuapp.com/signup`, userDetail)
       .then((res) => {
         setError(false)
         navigate("/login",{replace:true})

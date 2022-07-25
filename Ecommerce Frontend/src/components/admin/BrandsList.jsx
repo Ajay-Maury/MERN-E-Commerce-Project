@@ -6,7 +6,7 @@ import { useState } from 'react';
 const BrandsList = () => {
     const [brandData, setBrandData] = useState([])
     async function getBrandData() {
-        let data = await axios(`http://localhost:5000/brands/`);
+        let data = await axios(`https://mern-e-commerce-api-v-0.herokuapp.com/brands/`);
       console.log("Brand :", data.data.Brand);
       setBrandData(data.data.Brand);
   }

@@ -6,7 +6,7 @@ const userSchema = new mongoose.Schema(
     name: { type: String, required: true },
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
-    mobile_no: { type: Number, required: true, maxlength: 10, minlength: 10 },
+    mobile: { type: Number, required: true, maxlength: 10, minlength: 10 },
     age: { type: Number, required: true },
     gender: {
       type: String,
@@ -32,7 +32,7 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.pre("save", function (next) {
-  const hash = bcrypt.hashSync(this.password, 8);
+  const hash = bcrypt.hashSync(this.password, 10);
   this.password = hash;
   return next();
 });

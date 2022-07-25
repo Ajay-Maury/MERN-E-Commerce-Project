@@ -8,7 +8,7 @@ const AdminAuthWrapper = ({children}) => {
     return children;
   }
 
-  return navigate("/",{replace:true})
+  return navigate(-1,{replace:true})
 
 }
 

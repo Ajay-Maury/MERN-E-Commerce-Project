@@ -13,7 +13,7 @@ const LoginPrivateRoute = () => {
     <Box>
       <Routes>
         <Route
-          path='/user/profile'
+          path='/profile'
           element={
             <LoginAuthWrapper>
               <UserProfile />

@@ -27,7 +27,7 @@ const loginFailure = (payload) => {
 export const userLogin = (payload) => (dispatch) => {
   dispatch(loginRequest());
   axios
-    .post(`http://localhost:5000/login`,payload)
+    .post(`https://mern-e-commerce-api-v-0.herokuapp.com/login`,payload)
     .then((result) => {
       dispatch(loginSuccess(result.data));
     })

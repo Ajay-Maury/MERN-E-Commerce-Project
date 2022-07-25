@@ -15,7 +15,7 @@ const CategoryCreate = () => {
     };
     console.log(Category);
     const newCat = await axios.post(
-      `http://localhost:5000/category/create`,
+      `https://mern-e-commerce-api-v-0.herokuapp.com/category/create`,
       Category
     );
     console.log("Category", newCat);

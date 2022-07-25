@@ -31,9 +31,10 @@ router.post("/create", async (req, res) => {
   }
 });
 
-router.get("/", async (req, res) => {
+router.get("/user/:id", async (req, res) => {
   try {
-    const cart = await Cart.find().populate("products").lean().exec();
+    console.log("id",req.params.id)
+    const cart = await Cart.find({ userId :req.params.id}).populate("products").lean().exec();
     // const cart = await Cart.find().lean().exec();
     let TotalPrice = 0
     let Products = cart[0].products
@@ -47,6 +48,7 @@ router.get("/", async (req, res) => {
     return res.status(500).send({ error: error.message });
   }
 });
+
 router.get("/:id", async (req, res) => {
   try {
     const cart = await Cart.findById(req.params.id).lean().exec();

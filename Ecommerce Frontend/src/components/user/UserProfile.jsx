@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { Button, CardActionArea, CardActions, ListItemButton, Stack } from "@mui/material";
+import { AvatarGroup, Button, CardActionArea, CardActions, ListItemButton, Stack } from "@mui/material";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemAvatar from "@mui/material/ListItemAvatar"
@@ -16,74 +16,94 @@ import EditLocationIcon from "@mui/icons-material/EditLocation";
 import EditIcon from "@mui/icons-material/Edit";
 import Box from "@mui/material/Box";
 
-function generate(element) {
-  return [0, 1, 2].map((value) =>
-    React.cloneElement(element, {
-      key: value,
-    })
-  );
+function stringToColor(string) {
+  let hash = 0;
+  let i;
+
+  /* eslint-disable no-bitwise */
+  for (i = 0; i < string.length; i += 1) {
+    hash = string.charCodeAt(i) + ((hash << 5) - hash);
+  }
+
+  let color = "#";
+
+  for (i = 0; i < 3; i += 1) {
+    const value = (hash >> (i * 8)) & 0xff;
+    color += `00${value.toString(16)}`.slice(-2);
+  }
+  /* eslint-enable no-bitwise */
+
+  return color;
 }
+
+function stringAvatar(name) {
+  return {
+    sx: {
+      bgcolor: stringToColor(name),
+    },
+    children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+  };
+}
+
 
 const UserProfile = () => {
   const [dense, setDense] = React.useState(false);
   const [secondary, setSecondary] = React.useState(false);
-    
-  return (
-    <Stack direction="row" spacing={2}>
-      <Card sx={{ maxWidth: 345 }}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="140"
-            image="/static/images/cards/contemplative-reptile.jpg"
-            alt="green iguana"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-              Lizard
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Button size="small" color="primary">
-            <EditIcon />
-          </Button>
-        </CardActions>
-      </Card>
-      <Box component="div">
-        <Typography sx={{ mt: 4, mb: 2 }} variant="h4" component="div">
-          Address
-        </Typography>
 
-        <List dense={dense}>
-          {generate(
-            <ListItemButton>
-              <ListItem
-                secondaryAction={
-                  <IconButton aria-label="delete">
-                    <DeleteIcon />
-                  </IconButton>
-                }
-              >
-                <ListItemAvatar>
-                  <Avatar>
-                    <FolderIcon />
-                  </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                  primary="Single-line item"
-                  secondary={secondary ? "Secondary text" : null}
+  const isLogin = JSON.parse(localStorage.getItem("LoginData")) || false;
+  const {age,email,gender,mobile,name,role} = isLogin.user
+  // console.log(age, email, gender, mobile, name, role);
+
+  return (
+    <>
+      {isLogin ? (
+        <Box>
+          <Box>
+            {/* Hello from Profile */}
+            <Stack direction='row' spacing={2}>
+              <Box sx={{ margin: "auto" }}>
+                <Avatar
+                  {...stringAvatar(name + " " + role)}
+                  sx={{ width: 70, height: 70, margin:"15% auto" }}
                 />
-              </ListItem>
-            </ListItemButton>
-          )}
-        </List>
-      </Box>
-    </Stack>
+              </Box>
+            </Stack>
+          </Box>
+          <Box sx={{ margin: "auto" }}></Box>
+          <Box>
+            <p>
+              <strong>Name : </strong> {name}
+            </p>
+          </Box>
+          <Box>
+            <p>
+              {" "}
+              <strong>Email : </strong> {email}
+            </p>
+          </Box>
+          <Box>
+            {" "}
+            <p>
+              <strong>Mobile : </strong> {mobile}
+            </p>
+          </Box>
+          <Box>
+            {" "}
+            <p>
+              <strong>Gender : </strong> {gender}
+            </p>{" "}
+          </Box>
+          <Box>
+            {" "}
+            <p>
+              <strong>Age : </strong> {age}
+            </p>
+          </Box>
+        </Box>
+      ) : (
+        <Box>Data not found. Please Login..</Box>
+      )}
+    </>
   );
 }
 

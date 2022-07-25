@@ -1,5 +1,5 @@
 import React, { Children } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from "react-router-dom";
 
 const LoginAuthWrapper = ({ children }) => {
     const navigate = useNavigate()
@@ -8,7 +8,8 @@ const LoginAuthWrapper = ({ children }) => {
     return children;
   }
 
-  return navigate("/login",{replace:true})
+  return <Navigate to='/login' />;
+  // return navigate("/login",{replace:true})
 };
 
 export default LoginAuthWrapper

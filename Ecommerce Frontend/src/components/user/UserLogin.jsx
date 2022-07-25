@@ -24,7 +24,7 @@ const UserLogin = () => {
 
       console.log("loginDetail", loginDetail);
       const data = await axios
-        .post(`http://localhost:5000/login`, loginDetail)
+        .post(`https://mern-e-commerce-api-v-0.herokuapp.com/login`, loginDetail)
         .then((res) => {
           return res.data;
         })

@@ -4,57 +4,57 @@ const User = require("../models/userModel");
 const Address = require("../models/addressModel");
 const { body, validationResult } = require("express-validator");
 
-router.post(
-  "/",
-  body("name").trim().not().isEmpty().withMessage("Name is required"),
-  body("password").trim().not().isEmpty().withMessage("Password is required"),
-  body("email")
-    .isEmail()
-    .custom(async (value) => {
-      const user = await User.findOne({ email: value });
+// router.post(
+//   "/create",
+//   body("name").trim().not().isEmpty().withMessage("Name is required"),
+//   body("password").trim().not().isEmpty().withMessage("Password is required"),
+//   body("email")
+//     .isEmail()
+//     .custom(async (value) => {
+//       const user = await User.findOne({ email: value });
 
-      if (user) {
-        throw new Error("Email is already taken");
-      }
-      return true;
-    }),
-  body("mobile_no")
-    .trim()
-    .not()
-    .isEmpty()
-    .withMessage("Mobile No. is required")
-    .isNumeric()
-    .withMessage("Mobile No. must be a number")
-    .isLength({ min: 10, max: 10 })
-    .withMessage("Mobile No. be of 10 digit"),
-  body("age")
-    .trim()
-    .not()
-    .isEmpty()
-    .withMessage("Age is required")
-    .isNumeric()
-    .withMessage("Age  must be a number")
-    .custom((value) => {
-      if (value < 1 || value > 100) {
-        throw new Error("Age should be between 1 - 100");
-      }
-      return true;
-    }),
-  body("gender").trim().not().isEmpty().withMessage("Gender is required"),
-  async (req, res) => {
-    try {
-      const errors = validationResult(req);
-      //   console.log({ errors });
-      if (!errors.isEmpty()) {
-        return res.status(400).send({ errors: errors.array() });
-      }
-      const user = await User.create(req.body);
-      return res.status(201).send({ User: user });
-    } catch (error) {
-      return res.status(500).send({ error: error.message });
-    }
-  }
-);
+//       if (user) {
+//         throw new Error("Email is already taken");
+//       }
+//       return true;
+//     }),
+//   body("mobile_no")
+//     .trim()
+//     .not()
+//     .isEmpty()
+//     .withMessage("Mobile No. is required")
+//     .isNumeric()
+//     .withMessage("Mobile No. must be a number")
+//     .isLength({ min: 10, max: 10 })
+//     .withMessage("Mobile No. be of 10 digit"),
+//   body("age")
+//     .trim()
+//     .not()
+//     .isEmpty()
+//     .withMessage("Age is required")
+//     .isNumeric()
+//     .withMessage("Age  must be a number")
+//     .custom((value) => {
+//       if (value < 1 || value > 100) {
+//         throw new Error("Age should be between 1 - 100");
+//       }
+//       return true;
+//     }),
+//   body("gender").trim().not().isEmpty().withMessage("Gender is required"),
+//   async (req, res) => {
+//     try {
+//       const errors = validationResult(req);
+//       //   console.log({ errors });
+//       if (!errors.isEmpty()) {
+//         return res.status(400).send({ errors: errors.array() });
+//       }
+//       const user = await User.create(req.body);
+//       return res.status(201).send({ User: user });
+//     } catch (error) {
+//       return res.status(500).send({ error: error.message });
+//     }
+//   }
+// );
 
 // router.post(
 //   "/create",async (req, res) => {
@@ -160,25 +160,21 @@ router.get("/:id/address", async (req, res) => {
 });
 
 router.post(
-  "/:id/address",
-  body("name").trim().not().isEmpty().withMessage("Name is required"),
-  body("phone").trim().not().isEmpty().withMessage("Phone is required")
-    .isNumeric()
-    .withMessage("Phone  must be a number"),
-  body("email").trim().not().isEmpty().withMessage("Email is required").isEmail().withMessage("Email is required"),
+  "/:id/address/create",
+  body("address_line")
+    .trim()
+    .not()
+    .isEmpty()
+    .withMessage("Address line is required"),
   body("city").trim().not().isEmpty().withMessage("City is required"),
   body("district").trim().not().isEmpty().withMessage("District is required"),
   body("state").trim().not().isEmpty().withMessage("State is required"),
-  body("buildingName").trim().not().isEmpty().withMessage("Building Name is required"),
-  body("colony").trim().not().isEmpty().withMessage("Colony is required"),
   body("country").trim().not().isEmpty().withMessage("Country is required"),
   body("pinCode")
     .notEmpty()
     .withMessage("Pin code is required")
     .isLength({ min: 6, max: 6 })
-    .withMessage("Pincode shuold be of 6 digit")
-    .isNumeric()
-    .withMessage("Pin code  must be a number"),
+    .withMessage("Pincode shuold be of 6 digit"),
   async (req, res) => {
     // console.log("q")
     try {
@@ -199,24 +195,20 @@ router.post(
 );
 router.patch(
   "/address/edit/:idx",
- body("name").trim().not().isEmpty().withMessage("Name is required"),
-  body("phone").trim().not().isEmpty().withMessage("Phone is required")
-    .isNumeric()
-    .withMessage("Phone  must be a number"),
-  body("email").trim().not().isEmpty().withMessage("Email is required").isEmail().withMessage("Email is required"),
+  body("address_line")
+    .trim()
+    .not()
+    .isEmpty()
+    .withMessage("Address line is required"),
   body("city").trim().not().isEmpty().withMessage("City is required"),
   body("district").trim().not().isEmpty().withMessage("District is required"),
   body("state").trim().not().isEmpty().withMessage("State is required"),
-  body("buildingName").trim().not().isEmpty().withMessage("Building Name is required"),
-  body("colony").trim().not().isEmpty().withMessage("Colony is required"),
   body("country").trim().not().isEmpty().withMessage("Country is required"),
   body("pinCode")
     .notEmpty()
     .withMessage("Pin code is required")
     .isLength({ min: 6, max: 6 })
-    .withMessage("Pincode shuold be of 6 digit")
-    .isNumeric()
-    .withMessage("Pin code  must be a number"),
+    .withMessage("Pincode shuold be of 6 digit"),
   async (req, res) => {
     try {
       const errors = validationResult(req);

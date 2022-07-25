@@ -48,6 +48,7 @@ router.get("/user/:id", async (req, res) => {
     return res.status(500).send({ error: error.message });
   }
 });
+
 router.get("/:id", async (req, res) => {
   try {
     const cart = await Cart.findById(req.params.id).lean().exec();

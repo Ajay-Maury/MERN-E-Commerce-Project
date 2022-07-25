@@ -1,7 +1,7 @@
 import axios from "axios";
 import React from "react";
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -18,6 +18,7 @@ import { addToCart } from "../../redux/cart/addToCart/action";
 
 const ProductDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate()
   const dispatch = useDispatch();
   const { loading, error, product } = useSelector(
     (state) => state.singleProduct

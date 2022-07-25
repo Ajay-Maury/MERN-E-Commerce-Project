@@ -132,7 +132,20 @@ export default function Navbar() {
     >
       {isLogin ? (
         <Box>
-          <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+          <MenuItem onClick={handleMenuClose}>
+            <Link to='/profile'>
+              <Button>My Profile</Button>
+            </Link>{" "}
+          </MenuItem>
+          {isLogin.user.role == "admin" ? (
+            <MenuItem onClick={handleMenuClose}>
+              <Link to='/admin'>
+                <Button>Admin Panel</Button>
+              </Link>{" "}c
+            </MenuItem>
+          ) : (
+            ""
+          )}
           <MenuItem onClick={handleMenuClose}>
             {" "}
             <Button onClick={() => localStorage.removeItem("LoginData")}>
@@ -170,22 +183,28 @@ export default function Navbar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <MenuItem>
-        <IconButton size='large' aria-label='show 4 new mails' color='inherit'>
-          <Badge badgeContent={WishlistCount} color='error'>
-            <FavoriteRoundedIcon />
-          </Badge>
-        </IconButton>
-        <p>Wishlist</p>
-      </MenuItem>
+      <Link to='/wishlist'>
+        <MenuItem>
+          <IconButton
+            size='large'
+            // aria-label='show 4 new mails'
+            color='inherit'
+          >
+            <Badge badgeContent={WishlistCount} color='error'>
+              <FavoriteRoundedIcon />
+            </Badge>
+          </IconButton>
+          Wishlist
+        </MenuItem>
+      </Link>
       <Link to='/cart'>
         <MenuItem>
           <IconButton
             size='large'
-            aria-label='show 17 new notifications'
+            // aria-label='show 0 new notifications'
             color='inherit'
           >
-            <Badge badgeContent={<CartCounter/>} color='error'>
+            <Badge badgeContent={<CartCounter />} color='error'>
               <ShoppingCartOutlinedIcon />
             </Badge>
           </IconButton>
@@ -195,10 +214,10 @@ export default function Navbar() {
       <MenuItem>
         <IconButton
           size='large'
-          aria-label='show 17 new notifications'
+          // aria-label='show 17 new notifications'
           color='inherit'
         >
-          <Badge badgeContent={17} color='error'>
+          <Badge badgeContent={0} color='error'>
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -260,7 +279,7 @@ export default function Navbar() {
             <Link to='/wishlist'>
               <IconButton
                 size='large'
-                aria-label='show 4 new mails'
+                // aria-label='show 4 new mails'
                 color='inherit'
               >
                 <Badge badgeContent={WishlistCount} color='error'>
@@ -271,20 +290,20 @@ export default function Navbar() {
             <Link to='/cart'>
               <IconButton
                 size='large'
-                aria-label='show 17 new notifications'
+                // aria-label='show 17 new notifications'
                 color='inherit'
               >
-                <Badge badgeContent={data?.Data?.length?data.Data.length:0} color='error'>
+                <Badge badgeContent={<CartCounter />||0} color='error'>
                   <ShoppingCartOutlinedIcon sx={{ color: "white" }} />
                 </Badge>
               </IconButton>
             </Link>
             <IconButton
               size='large'
-              aria-label='show 17 new notifications'
+              // aria-label='show 17 new notifications'
               color='inherit'
             >
-              <Badge badgeContent={17} color='error'>
+              <Badge badgeContent={0} color='error'>
                 <NotificationsIcon />
               </Badge>
             </IconButton>

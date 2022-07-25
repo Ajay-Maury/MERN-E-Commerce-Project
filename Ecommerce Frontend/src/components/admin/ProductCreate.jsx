@@ -24,14 +24,14 @@ const ProductCreate = () => {
 
   async function brand() {
     const data = await axios
-      .get("http://localhost:5000/brands")
+      .get("https://mern-e-commerce-api-v-0.herokuapp.com/brands")
       .then((d) => d.data);
     console.log(data.Brand);
     setBrands(data.Brand);
   }
   async function categ() {
     const data = await axios
-      .get("http://localhost:5000/category")
+      .get("https://mern-e-commerce-api-v-0.herokuapp.com/category")
       .then((d) => d.data);
     console.log(data);
     setCategory(data.Category);
@@ -55,7 +55,7 @@ const ProductCreate = () => {
 
     console.log(product);
     const data = axios
-      .post(`http://localhost:5000/products/create`, product)
+      .post(`https://mern-e-commerce-api-v-0.herokuapp.com/products/create`, product)
       .then((d) => d.data);
     console.log("Product : ", data);
      setProductBrand(""),

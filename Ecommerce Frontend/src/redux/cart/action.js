@@ -31,8 +31,8 @@ export const fetchCartData = (id) => {
   return function (dispatch) {
     // console.log("xsdxd",id)
     dispatch(fetchCartRequest());
-    // axios(`https://mern-e-commerce-api-v-0.herokuapp.com/cart/${id}`)
-    axios(`http://localhost:5000/cart/user/${id}`)
+    axios(`https://mern-e-commerce-api-v-0.herokuapp.com/cart/user/${id}`)
+    // axios(`http://localhost:5000/cart/user/${id}`)
       .then((response) => {
         // console.log("RDE", response.data);
         dispatch(

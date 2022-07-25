@@ -14,16 +14,17 @@ const CartCounter = () => {
         if (isLogin) {
             if (data?.Data?.length === 0) {
                 dispatch(fetchCartData(isLogin.user._id))
-                setCount = data?.Data?.length;
+                setCount(data?.Data?.length)
             }    
         }
 
 
     },[dispatch,data?.Data?.length])
-  return (
-      <Box>
-          {count}
-    </Box>
+    return (
+        <>
+            {count}
+            
+  </>
   );
 }
 

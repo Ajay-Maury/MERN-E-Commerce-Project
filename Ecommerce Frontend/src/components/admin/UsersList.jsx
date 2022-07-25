@@ -14,7 +14,7 @@ const UsersList = () => {
 const [userData,setUserData] = useState([])
 
   async function fetchData() {
-    let data = await axios("http://localhost:5000/user/");
+    let data = await axios("https://mern-e-commerce-api-v-0.herokuapp.com/user/");
     data = data.data.User
     console.log(data);
     setUserData(data);
