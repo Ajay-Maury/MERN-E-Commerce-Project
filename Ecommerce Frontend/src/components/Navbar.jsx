@@ -141,7 +141,7 @@ export default function Navbar() {
             <MenuItem onClick={handleMenuClose}>
               <Link to='/admin'>
                 <Button>Admin Panel</Button>
-              </Link>{" "}c
+              </Link>{" "}
             </MenuItem>
           ) : (
             ""
