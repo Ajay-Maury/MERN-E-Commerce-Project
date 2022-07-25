@@ -32,7 +32,7 @@ const ProductCard = ({ elem }) => {
        console.log("cart", payload);
     }
     else {
-      navigate("/login",{replace:true})      
+      navigate("/login",{replace:false})      
     }    
   }
   function handleWishlist(id) {
