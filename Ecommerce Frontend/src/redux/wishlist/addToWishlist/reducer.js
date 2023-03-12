@@ -18,16 +18,16 @@ export const AddToWishListReducer = (state = initState, { type, payload }) => {
     }
     case ADD_WISHLIST_SUCCESS: {
       return {
-          AddWishListError: false,
-          AddWishListSuscess: true,
-          AddWishListLoading: false,
-    };
-}
-case ADD_WISHLIST_FAILURE: {
-    return {
-          AddWishListError: payload,
-          AddWishListLoading: false,
-          AddWishListSuscess: false,
+        AddWishListError: false,
+        AddWishListSuscess: true,
+        AddWishListLoading: false,
+      };
+    }
+    case ADD_WISHLIST_FAILURE: {
+      return {
+        AddWishListError: payload,
+        AddWishListLoading: false,
+        AddWishListSuscess: false,
       };
     }
     default: {

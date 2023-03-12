@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { useState } from "react";
 import { Stack } from "@mui/material";
+import { CONFIG } from "../../config/config";
 
 const CategoryCreate = () => {
   const [name, setName] = useState("");
@@ -15,7 +16,7 @@ const CategoryCreate = () => {
     };
     console.log(Category);
     const newCat = await axios.post(
-      `https://mern-e-commerce-api-v-0.herokuapp.com/category/create`,
+      `${CONFIG.BASE_URL}/category/create`,
       Category
     );
     console.log("Category", newCat);

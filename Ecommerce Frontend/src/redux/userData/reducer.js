@@ -33,7 +33,7 @@ export const UserReducer = (state = initState, { type, payload }) => {
     }
     case FETCH_USER_ADDRESS_SUCCESS: {
       return { ...state, address: payload };
-      }
-      default: return state;
+    }
+    default: return state;
   }
 };

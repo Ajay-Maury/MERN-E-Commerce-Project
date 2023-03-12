@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userLogin } from '../../redux/auth/action';
+import { CONFIG } from '../../config/config';
 
 const UserLogin = () => {
   const navigate = useNavigate()
@@ -24,7 +25,7 @@ const UserLogin = () => {
 
       console.log("loginDetail", loginDetail);
       const data = await axios
-        .post(`https://mern-e-commerce-api-v-0.herokuapp.com/login`, loginDetail)
+        .post(`${CONFIG.BASE_URL}/login`, loginDetail)
         .then((res) => {
           return res.data;
         })

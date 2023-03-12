@@ -9,12 +9,13 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import { IconButton, ListItemButton } from '@mui/material';
 import DeleteIcon from "@mui/icons-material/Delete";
+import { CONFIG } from '../../config/config';
 
 const UsersList = () => {
 const [userData,setUserData] = useState([])
 
   async function fetchData() {
-    let data = await axios("https://mern-e-commerce-api-v-0.herokuapp.com/user/");
+    let data = await axios(`${CONFIG.BASE_URL}/user`);
     data = data.data.User
     console.log(data);
     setUserData(data);
@@ -42,7 +43,7 @@ const [userData,setUserData] = useState([])
               }
             >
               <ListItemAvatar>
-                <Avatar alt="Remy Sharp" src={ele.profile} />
+                <Avatar alt="profile_pic" src={ele.profile} />
               </ListItemAvatar>
               <ListItemText
                 primary={ele.name}
@@ -54,9 +55,10 @@ const [userData,setUserData] = useState([])
                       variant="body2"
                       color="text.primary"
                     >
-                      {ele.email}
+                     Email: {ele.email}
+                     <br />
                     </Typography>
-                    Mobile No. :{ele.mobile_no} <br />
+                    Mobile No. :{ele.mobile} <br />
                     {ele.addresses}
                   </React.Fragment>
                 }

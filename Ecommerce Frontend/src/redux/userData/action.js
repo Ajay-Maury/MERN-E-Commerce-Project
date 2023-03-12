@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CONFIG } from "../../config/config";
 
 export const FETCH_SINGLE_USER_REQUEST = "FETCH_SINGLE_USER_REQUEST";
 export const FETCH_SINGLE_USER_SUCCESS = "FETCH_SINGLE_USER_SUCCESS";
@@ -30,7 +31,7 @@ const fetchSingleUserSuscess = (data) => {
 
 export const fetchSingleUserData = (userId) => (dispatch) => {
   dispatch(fetchSingleUserRequest());
-  axios(`https://mern-e-commerce-api-v-0.herokuapp.com/user/${userId}`)
+  axios(`${CONFIG.BASE_URL}/user/${userId}`)
     .then((response) => {
       dispatch(fetchSingleUserSuscess(response.data));
     })
@@ -61,7 +62,7 @@ const fetchAddressSuscess = (data) => {
 
 export const fetchSingleUserAddress = (userId) => (dispatch) => {
   dispatch(fetchAddressRequest());
-  axios(`https://mern-e-commerce-api-v-0.herokuapp.com/user/${userId}/address`)
+  axios(`${CONFIG.BASE_URL}/user/${userId}/address`)
     .then((response) => {
       dispatch(fetchAddressSuscess(response.data));
     })

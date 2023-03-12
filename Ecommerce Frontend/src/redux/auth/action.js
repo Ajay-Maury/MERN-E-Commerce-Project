@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CONFIG } from "../../config/config";
 
 export const USER_LOGIN_REQUEST = "USER_LOGIN_REQUEST";
 export const USER_LOGIN_SUCCESS = "USER_LOGIN_SUCCESS";
@@ -27,7 +28,7 @@ const loginFailure = (payload) => {
 export const userLogin = (payload) => (dispatch) => {
   dispatch(loginRequest());
   axios
-    .post(`https://mern-e-commerce-api-v-0.herokuapp.com/login`,payload)
+    .post(`${CONFIG.BASE_URL}/login`, payload)
     .then((result) => {
       dispatch(loginSuccess(result.data));
     })

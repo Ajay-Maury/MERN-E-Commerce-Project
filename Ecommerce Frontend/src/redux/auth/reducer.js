@@ -3,12 +3,12 @@ import { USER_LOGIN_FAILURE, USER_LOGIN_REQUEST, USER_LOGIN_SUCCESS } from "./ac
 
 const initState = {
   auth: false,
-    token: "",
-  user:{},
+  token: "",
+  user: {},
   error: false,
 };
 
-export const AuthReducer = (state = initState, {type,payload}) => {
+export const AuthReducer = (state = initState, { type, payload }) => {
   switch (type) {
     case USER_LOGIN_REQUEST:
       return {
@@ -22,8 +22,8 @@ export const AuthReducer = (state = initState, {type,payload}) => {
       return {
         ...state,
         auth: true,
-          token: payload.token,
-        user:payload.user,
+        token: payload.token,
+        user: payload.user,
         error: false,
       };
     case USER_LOGIN_FAILURE:

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CONFIG } from "../../config/config";
 
 //  Action types
 export const FETCH_PRODUCT_REQUEST = "FETCH_PRODUCT_REQUEST";
@@ -27,22 +28,22 @@ export const fetchProductSuscess = (data) => {
   };
 };
 
-export const fetchProduct= (sort) => {
+export const fetchProduct = (sort) => {
   return function (dispatch) {
-      console.log("sort redux",sort)
-        dispatch(fetchProductRequest())
-        axios(`https://mern-e-commerce-api-v-0.herokuapp.com/products?_sort=${sort}&_page=${1}`)
-    // axios(`http://localhost:5000/products?_sort=${sort}&_page=${1}`)
-          .then((res) => {
-            // Response data in the array of products
-            // console.log(res);
-            const products = res.data;
-            dispatch(fetchProductSuscess(products));
-          })
-          .catch((error) => {
-            // error message in error description
-            console.log(error.message);
-            dispatch(fetchProductFailure(error.message));
-          });
-    }
+    console.log("sort redux", sort)
+    dispatch(fetchProductRequest())
+    axios(`${CONFIG.BASE_URL}/products?_sort=${sort}&_page=${1}`)
+      // axios(`http://localhost:5000/products?_sort=${sort}&_page=${1}`)
+      .then((res) => {
+        // Response data in the array of products
+        // console.log(res);
+        const products = res.data;
+        dispatch(fetchProductSuscess(products));
+      })
+      .catch((error) => {
+        // error message in error description
+        console.log(error.message);
+        dispatch(fetchProductFailure(error.message));
+      });
+  }
 }

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CONFIG } from "../../config/config";
 
 export const FETCH_ORDER_REQUEST = "FETCH_ORDER_REQUEST";
 export const FETCH_ORDER_SUCCESS = "FETCH_ORDER_SUCCESS";
@@ -38,7 +39,7 @@ const fetchSingleOrderSuscess = (data) => {
 
 export const fetchSingleOrderData = (orderId) => (dispatch) => {
   dispatch(fetchSingleOrderRequest());
-  axios(`https://mern-e-commerce-api-v-0.herokuapp.com/order/${orderId}`)
+  axios(`${CONFIG.BASE_URL}/order/${orderId}`)
     .then((response) => {
       dispatch(fetchSingleOrderSuscess(response.data));
     })
@@ -69,7 +70,7 @@ const fetchOrderSuscess = (data) => {
 
 export const fetchUserAllOrders = (userId) => (dispatch) => {
   dispatch(fetchOrderRequest());
-  axios(`https://mern-e-commerce-api-v-0.herokuapp.com/order/${userId}`)
+  axios(`${CONFIG.BASE_URL}/order/${userId}`)
     .then((response) => {
       dispatch(fetchOrderSuscess(response.data));
     })
@@ -100,7 +101,7 @@ const addOrderSuscess = (data) => {
 
 export const addToOrder = (payload) => (dispatch) => {
   dispatch(addOrderRequest());
-  axios.post(`https://mern-e-commerce-api-v-0.herokuapp.com/order`,payload)
+  axios.post(`${CONFIG.BASE_URL}/order`, payload)
     .then((response) => {
       localStorage.setItem("PlacedOrder", JSON.stringify(response.data));
       dispatch(addOrderSuscess(response.data));
@@ -130,9 +131,9 @@ const updateOrderSuscess = (data) => {
   };
 };
 
-export const updateOrder = (id,payload) => (dispatch) => {
+export const updateOrder = (id, payload) => (dispatch) => {
   dispatch(updateOrderRequest());
-  axios.patch(`https://mern-e-commerce-api-v-0.herokuapp.com/order/${id}`,payload)
+  axios.patch(`${CONFIG.BASE_URL}/order/${id}`, payload)
     .then((response) => {
       dispatch(updateOrderSuscess(response.data));
     })

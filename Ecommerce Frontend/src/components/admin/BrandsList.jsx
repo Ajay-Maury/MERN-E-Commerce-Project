@@ -2,11 +2,12 @@ import axios from 'axios'
 import React from 'react'
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { CONFIG } from '../../config/config';
 
 const BrandsList = () => {
     const [brandData, setBrandData] = useState([])
     async function getBrandData() {
-        let data = await axios(`https://mern-e-commerce-api-v-0.herokuapp.com/brands/`);
+        let data = await axios(`${CONFIG.BASE_URL}/brands`);
       console.log("Brand :", data.data.Brand);
       setBrandData(data.data.Brand);
   }

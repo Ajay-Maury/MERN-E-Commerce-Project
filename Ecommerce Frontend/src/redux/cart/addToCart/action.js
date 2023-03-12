@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CONFIG } from "../../../config/config";
 
 export const ADD_CART_REQUEST = "ADD_CART_REQUEST";
 export const ADD_CART_SUCCESS = "ADD_CART_SUCCESS";
@@ -27,7 +28,7 @@ const addCartFailure = (error) => {
 export const addToCart = (payload) => (dispatch) => {
   dispatch(addCartRequest());
   axios
-    .post(`https://mern-e-commerce-api-v-0.herokuapp.com/cart/create`, payload)
+    .post(`${CONFIG.BASE_URL}/cart/create`, payload)
     .then((response) => dispatch(addCartSuscess(response.data)))
     .catch((error) => dispatch(addCartFailure(error.message)));
 };

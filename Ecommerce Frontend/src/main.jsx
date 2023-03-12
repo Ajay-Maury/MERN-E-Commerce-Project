@@ -10,7 +10,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <StyledEngineProvider injectFirst>
     <BrowserRouter>
       {/* <ChakraProvider> */}
-        <App />
+      <App />
       {/* </ChakraProvider> */}
     </BrowserRouter>
   </StyledEngineProvider>

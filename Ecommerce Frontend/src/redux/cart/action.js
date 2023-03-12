@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CONFIG } from "../../config/config";
 
 export const FETCH_CART_REQUEST = "FETCH_CART_REQUEST";
 export const FETCH_CART_SUCCESS = "FETCH_CART_SUCCESS";
@@ -31,8 +32,8 @@ export const fetchCartData = (id) => {
   return function (dispatch) {
     // console.log("xsdxd",id)
     dispatch(fetchCartRequest());
-    axios(`https://mern-e-commerce-api-v-0.herokuapp.com/cart/user/${id}`)
-    // axios(`http://localhost:5000/cart/user/${id}`)
+    axios(`${CONFIG.BASE_URL}/cart/user/${id}`)
+      // axios(`http://localhost:5000/cart/user/${id}`)
       .then((response) => {
         // console.log("RDE", response.data);
         dispatch(
@@ -40,8 +41,8 @@ export const fetchCartData = (id) => {
             Data: response.data.Cart[0].products,
             Id: response.data.Cart[0]._id,
             userId: response.data.Cart[0].userId,
-            TotalPrice : response.data.TotalPrice,
-            TotalProducts : response.data.TotalProducts,
+            TotalPrice: response.data.TotalPrice,
+            TotalProducts: response.data.TotalProducts,
           })
         )
       }

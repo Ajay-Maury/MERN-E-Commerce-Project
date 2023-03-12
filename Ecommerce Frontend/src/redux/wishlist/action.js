@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CONFIG } from "../../config/config";
 
 export const GET_WISHLIST_PRODUCTS_REQUEST = "GET_WISHLIST_PRODUCTS_REQUEST";
 export const GET_WISHLIST_PRODUCTS_SUCCESS = "GET_WISHLIST_PRODUCTS_SUCCESS";
@@ -29,7 +30,7 @@ const getWishlistProductsFailure = (error) => {
 //   return function (dispatch) {
 //     dispatch(getWishlistProductsRequest());
 //     axios
-//       .get(`https://mern-e-commerce-api-v-0.herokuapp.com/wishlist/${id}`)
+//       .get(`${CONFIG.BASE_URL}/wishlist/${id}`)
 //       .then((res) => {
 //         console.log(res.data, "FETCH")
 //         dispatch(getWishlistProductsSuscess(res.data))
@@ -41,10 +42,11 @@ const getWishlistProductsFailure = (error) => {
 export const getWishlistProducts = (id) => {
   return function (dispatch) {
     dispatch(getWishlistProductsRequest());
-    axios(`https://mern-e-commerce-api-v-0.herokuapp.com/wishlist`)
+    axios(`${CONFIG.BASE_URL}/wishlist`)
       .then((response) => {
-        console.log("Red",response.data)
-        dispatch(getWishlistProductsSuscess(response.data))}
+        console.log("Red", response.data)
+        dispatch(getWishlistProductsSuscess(response.data))
+      }
       )
       .catch((error) => dispatch(getWishlistProductsFailure(error.message)));
   };

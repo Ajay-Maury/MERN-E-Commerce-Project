@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CONFIG } from "../../../config/config";
 
 export const ADD_WISHLIST_REQUEST = "ADD_WISHLIST_REQUEST";
 export const ADD_WISHLIST_SUCCESS = "ADD_WISHLIST_SUCCESS";
@@ -26,7 +27,7 @@ const addWishlistFailure = (error) => {
 export const addToWishlist = (id) => (dispatch) => {
   dispatch(addWishlistRequest());
   axios
-    .post("https://mern-e-commerce-api-v-0.herokuapp.com/wishlist", id)
+    .post(`${CONFIG.BASE_URL}/wishlist`, id)
     .then((res) => dispatch(addWishlistSuscess(res.data)))
     .catch((err) => dispatch(addWishlistFailure(err.message)));
 };

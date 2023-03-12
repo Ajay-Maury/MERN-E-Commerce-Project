@@ -26,7 +26,7 @@ const root_reducer = combineReducers({
   removeFromWishlist: removeWishlistItemReducer,
   userData: UserReducer,
   placedOrder: OrderReducer,
-  auth : AuthReducer,
+  auth: AuthReducer,
 });
 
 const store = createStore(

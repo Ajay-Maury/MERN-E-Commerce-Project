@@ -15,7 +15,7 @@ const [logo,setLogo] = useState("")
 BrandName : name, BrandLogo : logo
     }
    console.log(Brand)
-   const newBrand = await axios.post(`https://mern-e-commerce-api-v-0.herokuapp.com/brands/create`, Brand);
+   const newBrand = await axios.post(`${CONFIG.BASE_URL}/brands/create`, Brand);
    console.log("BRand",newBrand)
   }
   return (

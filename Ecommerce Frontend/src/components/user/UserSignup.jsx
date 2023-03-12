@@ -10,6 +10,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { Link, useNavigate } from "react-router-dom";
+import { CONFIG } from "../../config/config";
 
 const UserSignup = () => {
   const [name, setName] = useState("");
@@ -34,7 +35,7 @@ const UserSignup = () => {
     };
     console.log("user", userDetail);
     const data = axios
-      .post(`https://mern-e-commerce-api-v-0.herokuapp.com/signup`, userDetail)
+      .post(`${CONFIG.BASE_URL}/signup`, userDetail)
       .then((res) => {
         setError(false)
         navigate("/login",{replace:true})

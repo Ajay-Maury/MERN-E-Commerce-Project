@@ -1,4 +1,5 @@
 import axios from "axios";
+import { CONFIG } from "../../../config/config";
 
 export const REMOVE_WISHLIST_REQUEST = "REMOVE_WISHLIST_REQUEST";
 export const REMOVE_WISHLIST_SUCCESS = "REMOVE_WISHLIST_SUCCESS";
@@ -24,10 +25,10 @@ const removeWishlistFailure = (error) => {
   };
 };
 
-export const removeFromWishlist = (wishlistId,itemId) => (dispatch) => {
+export const removeFromWishlist = (wishlistId, itemId) => (dispatch) => {
   dispatch(removeWishlistRequest());
   axios
-    .delete(`https://mern-e-commerce-api-v-0.herokuapp.com/cart/${wishlistId}/delete/${itemId}`)
+    .delete(`${CONFIG.BASE_URL}/cart/${wishlistId}/delete/${itemId}`)
     .then((res) => dispatch(removeWishlistSuscess(res.data)))
     .catch((error) => dispatch(removeWishlistFailure(error.message)));
 };
