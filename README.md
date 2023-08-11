@@ -44,12 +44,16 @@ This E-Commerce project aims to create a fully functional (not too much focused 
 
 - # Razorpay Payment Gateway Integration for Secure Transactions
   ![image](https://github.com/Ajay-Maury/MERN-E-Commerce-Project/assets/97455068/75707dc6-eb26-4016-89c1-2b65c19441ca)
+  ---
   ![image](https://github.com/Ajay-Maury/MERN-E-Commerce-Project/assets/97455068/4c2f55d6-a5f8-4147-8c60-4b4d6c4803b8)
 
 - # Admin Dashboard for Inventory and Customer Management
   ![image](https://github.com/Ajay-Maury/MERN-E-Commerce-Project/assets/97455068/7a0fc831-c2bb-43e5-8a70-1be3b8ca2af9)
+  ---
   ![image](https://github.com/Ajay-Maury/MERN-E-Commerce-Project/assets/97455068/7e15568d-3931-402a-b927-69311f7803be)
+  ---
   ![image](https://github.com/Ajay-Maury/MERN-E-Commerce-Project/assets/97455068/95a02dcb-3831-4394-ae61-cb5c9e3eeaa3)
+  ---
 
 
 
