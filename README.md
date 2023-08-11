@@ -14,7 +14,7 @@ Welcome to the MERN E-Commerce Project repository! This project is built using t
 
 ## Project Overview
 
-This E-Commerce project aims to create a fully functional online shopping platform. Users can browse through various products, add them to their cart, make purchases, and manage their orders. Admin users have access to a dashboard where they can manage products, inventory, orders, and customer information.
+This E-Commerce project aims to create a fully functional (not too much focused on UI) online shopping platform. Users can browse through various products, add them to their cart, make purchases, and manage their orders. Admin users have access to a dashboard where they can manage products, inventory, orders, and customer information.
 
 ## Features
 
