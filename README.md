@@ -92,8 +92,6 @@ cd Ecommerce-Frontend
 npm install
 ```
 
-Sure, here's the updated backend configuration section in your README:
-
 ### Backend Configuration
 
 1. Rename `.env.example` to `.env` in the `backend` directory.
