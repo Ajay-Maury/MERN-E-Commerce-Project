@@ -260,7 +260,7 @@ export default function Navbar() {
                 color: "black",
               }}
             >
-              Ecommerce Site
+              E-commerce Site
             </Typography>
           </Link>
           <Search>
