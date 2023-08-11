@@ -44,7 +44,6 @@ export const getWishlistProducts = (id) => {
     dispatch(getWishlistProductsRequest());
     axios(`${CONFIG.BASE_URL}/wishlist`)
       .then((response) => {
-        console.log("Red", response.data)
         dispatch(getWishlistProductsSuscess(response.data))
       }
       )

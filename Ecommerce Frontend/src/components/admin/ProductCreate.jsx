@@ -26,14 +26,14 @@ const ProductCreate = () => {
     const data = await axios
       .get(`${CONFIG.BASE_URL}/brands`)
       .then((d) => d.data);
-    console.log(data.Brand);
+    // console.log(data.Brand);
     setBrands(data.Brand);
   }
   async function categ() {
     const data = await axios
       .get(`${CONFIG.BASE_URL}/category`)
       .then((d) => d.data);
-    console.log(data);
+    // console.log(data);
     setCategory(data.Category);
   }
   useEffect(() => {
@@ -53,11 +53,11 @@ const ProductCreate = () => {
       image_url: productImage,
     };
 
-    console.log(product);
+    // console.log(product);
     const data = axios
       .post(`${CONFIG.BASE_URL}/products/create`, product)
       .then((d) => d.data);
-    console.log("Product : ", data);
+    // console.log("Product : ", data);
      setProductBrand(""),
        setProductCategory(""),
        setProductName(""),

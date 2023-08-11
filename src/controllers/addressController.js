@@ -4,7 +4,6 @@ const Address = require("../models/addressModel");
 const User = require("../models/userModel");
 
 router.post("/:id/address", async (req, res) => {
-  // console.log("Adderes")
   try {
     const address = await Address.create(req.body);
     const user = await User.findByIdAndUpdate(req.params.id, {

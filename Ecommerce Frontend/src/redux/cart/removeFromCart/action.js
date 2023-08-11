@@ -26,7 +26,6 @@ const removeCartItemFailure = (error) => {
 };
 
 export const getremoveCartItem = (cartId, itemId) => (dispatch) => {
-  console.log("cartId, itemId", cartId, itemId);
   dispatch(removeCartItemRequest());
   axios
     .delete(`${CONFIG.BASE_URL}/cart/${cartId}/delete/${itemId}`)

@@ -38,9 +38,9 @@ export const fetchCartData = (id) => {
         // console.log("RDE", response.data);
         dispatch(
           fetchCartSuscess({
-            Data: response.data.Cart[0].products,
-            Id: response.data.Cart[0]._id,
-            userId: response.data.Cart[0].userId,
+            Data: response.data.Cart[0]?.products || [],
+            Id: response.data.Cart[0]?._id || "",
+            userId: response.data.Cart[0]?.userId || "",
             TotalPrice: response.data.TotalPrice,
             TotalProducts: response.data.TotalProducts,
           })

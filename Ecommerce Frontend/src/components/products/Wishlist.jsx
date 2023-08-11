@@ -8,7 +8,7 @@ const Wishlist = () => {
   const dispatch = useDispatch()
   let data = useSelector((state) => state.wishlistData);
   let data1 = data?.data?.Wishlist?.[0]?.products;
-  console.log("Wishlist data", data);
+  
   useEffect(() => {
     dispatch(getWishlistProducts());
   }, [dispatch]);

@@ -19,7 +19,7 @@ const OrderAddress = () => {
   const navigate = useNavigate()
      const dispatch = useDispatch();
      const { address } = useSelector((state) => state.userData.address);
-     console.log("Address", address);
+    //  console.log("Address", address);
      const userId = "629f810c42a8105b131a4ae1";
 
      useEffect(() => {
@@ -28,7 +28,7 @@ const OrderAddress = () => {
 
      const handleChange = (e) => {
        // setValue((event.target as HTMLInputElement).value);
-       console.log("Add", e.target.value)
+      //  console.log("Add", e.target.value)
        setAddressVal(e.target.value);
         //  dispatch(updateOrder(userI));
   };

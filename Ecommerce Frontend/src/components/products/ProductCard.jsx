@@ -22,14 +22,12 @@ const ProductCard = ({ elem }) => {
 
   function handleCart(id) {
     if (isLogin) {
-       console.log(id);
        const payload = {
          products: id,
          userId: isLogin.user._id,
        };
 
        dispatch(addToCart(payload));
-       console.log("cart", payload);
     }
     else {
       navigate("/login",{replace:false})      
@@ -37,14 +35,12 @@ const ProductCard = ({ elem }) => {
   }
   function handleWishlist(id) {
     if (isLogin){
- console.log(id);
     const payload = {
       products: id,
       userId: isLogin.user._id,
     };
 
     dispatch(addToWishlist(payload));
-    console.log("wishlist", payload);
     }
     else {
   navigate("/login")
@@ -61,7 +57,6 @@ const ProductCard = ({ elem }) => {
         image={elem.image_url}
         alt='green iguana'
         onClick={() => {
-          console.log("elem._id", elem._id);
           navigate(`./product/${elem._id}`);
         }}
       />

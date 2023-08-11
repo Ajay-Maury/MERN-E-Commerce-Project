@@ -17,7 +17,7 @@ const [userData,setUserData] = useState([])
   async function fetchData() {
     let data = await axios(`${CONFIG.BASE_URL}/user`);
     data = data.data.User
-    console.log(data);
+    // console.log(data);
     setUserData(data);
   }
   useEffect(() => {

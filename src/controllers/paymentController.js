@@ -9,20 +9,15 @@ const instance = new Razorpay({
 });
 
 router.post("/", async (req, res) => {
-  console.log("PAym out");
   try {
-    console.log("PAym on");
     const options = {
       amount: req.body.amount, // amount in the smallest currency unit
       currency: "INR",
       receipt: `rcpt:${Date.now()}`,
     };
-    console.log("PAym in");
     const order = await instance.orders.create(options);
-    console.log(order);
     return res.status(200).send(order);
   } catch (error) {
-    console.log("PAym err");
     return res.status(500).send(error.message);
   }
 });

@@ -23,7 +23,6 @@ const UserLogin = () => {
         }
       // dispatch(userLogin(loginDetail));
 
-      console.log("loginDetail", loginDetail);
       const data = await axios
         .post(`${CONFIG.BASE_URL}/login`, loginDetail)
         .then((res) => {
@@ -34,14 +33,12 @@ const UserLogin = () => {
           return err;
         });
       if (data.user) {
-        console.log(data);
         localStorage.setItem("LoginData", JSON.stringify(data));
         setError(false);
         navigate("/", { replace: true });
       } else {
         setError(data);
       }
-      console.log("error", error);
       
   }
   // useEffect(() => {

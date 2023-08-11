@@ -18,7 +18,6 @@ export const AuthReducer = (state = initState, { type, payload }) => {
         error: false,
       };
     case USER_LOGIN_SUCCESS:
-      console.log(payload);
       return {
         ...state,
         auth: true,

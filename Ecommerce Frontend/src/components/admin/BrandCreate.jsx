@@ -14,9 +14,9 @@ const [logo,setLogo] = useState("")
     const Brand = {
 BrandName : name, BrandLogo : logo
     }
-   console.log(Brand)
+  //  console.log(Brand)
    const newBrand = await axios.post(`${CONFIG.BASE_URL}/brands/create`, Brand);
-   console.log("BRand",newBrand)
+  //  console.log("BRand",newBrand)
   }
   return (
     <div>

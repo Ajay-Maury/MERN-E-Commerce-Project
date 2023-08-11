@@ -1,6 +1,5 @@
 import React from 'react'
-
-import { Box, IconButton, ListItemButton, MenuItem, Select, Stack } from '@mui/material';
+import { Box, CircularProgress, IconButton, ListItemButton, MenuItem, Select, Stack } from '@mui/material';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import axios from 'axios';
@@ -42,7 +41,11 @@ const ProductList = () => {
       }}
       width={"100%"}
     >
-      {loading && <Box>Loading please wait....</Box>}
+      {(loading && products?.length === 0) &&
+       <div style={{display:"flex",minHeight:"80vh",alignItems:"center",justifyContent:"center"}}>
+        <CircularProgress />
+        </div>
+        }
       {error && <Box>{error}</Box>}
       {!loading && !error && (
         <Box sx={{ display: "flex" }}>

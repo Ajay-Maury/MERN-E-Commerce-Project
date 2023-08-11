@@ -30,7 +30,6 @@ export const fetchProductSuscess = (data) => {
 
 export const fetchProduct = (sort) => {
   return function (dispatch) {
-    console.log("sort redux", sort)
     dispatch(fetchProductRequest())
     axios(`${CONFIG.BASE_URL}/products?_sort=${sort}&_page=${1}`)
       // axios(`http://localhost:5000/products?_sort=${sort}&_page=${1}`)
@@ -42,7 +41,6 @@ export const fetchProduct = (sort) => {
       })
       .catch((error) => {
         // error message in error description
-        console.log(error.message);
         dispatch(fetchProductFailure(error.message));
       });
   }

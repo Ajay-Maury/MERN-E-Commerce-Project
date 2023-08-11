@@ -3,7 +3,6 @@ import React from 'react'
 
 const AddressCard = ({ data }) => {
     const { address_line, city, country, district, pinCode, state } = data
-    // console.log(address_line, city, country, district, pinCode, state);
   return (
       <Box>
           <Box> <strong>Address : </strong> {address_line} </Box>

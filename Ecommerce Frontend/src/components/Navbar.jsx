@@ -16,7 +16,7 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import FavoriteRoundedIcon from "@mui/icons-material/FavoriteRounded";
 import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -66,13 +66,12 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function Navbar() {
-
   const isLogin = JSON.parse(localStorage.getItem("LoginData")) || false;
 
   // const [isLogin, setIsLogin] = React.useState(false);
   const dispatch = useDispatch();
   const { data, loading, error } = useSelector((state) => state.cartData);
-  
+
   // const {TotalProducts} = data
   // console.log("CartProduct Nav", TotalProducts,data);
 
@@ -81,14 +80,13 @@ export default function Navbar() {
   //     dispatch(fetchCartData(isLogin.user._id));
   //   }
   // }, [data.Data.length,dispatch,fetchCartData]);
-  
+
   // dispatch(getWishlistProducts("629f810c42a8105b131a4ae1"));
   // const Wishlist = useSelector((state) => state.wishlistData.data);
   // console.log("Wishlist", Wishlist);
 
   const WishlistCount = 9;
   // console.log("www", WishlistCount);
-  
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -133,13 +131,13 @@ export default function Navbar() {
       {isLogin ? (
         <Box>
           <MenuItem onClick={handleMenuClose}>
-            <Link to='/profile'>
+            <Link to="/profile">
               <Button>My Profile</Button>
             </Link>{" "}
           </MenuItem>
           {isLogin.user.role == "admin" ? (
             <MenuItem onClick={handleMenuClose}>
-              <Link to='/admin'>
+              <Link to="/admin">
                 <Button>Admin Panel</Button>
               </Link>{" "}
             </MenuItem>
@@ -156,10 +154,10 @@ export default function Navbar() {
       ) : (
         <Box>
           <MenuItem onClick={handleMenuClose}>
-            <Link to='/login'>Login</Link>
+            <Link to="/login">Login</Link>
           </MenuItem>
           <MenuItem onClick={handleMenuClose}>
-            <Link to='/signup'>Signup</Link>
+            <Link to="/signup">Signup</Link>
           </MenuItem>
         </Box>
       )}
@@ -183,41 +181,41 @@ export default function Navbar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
-      <Link to='/wishlist'>
-        <MenuItem >
+      <Link to="/wishlist">
+        <MenuItem>
           <IconButton
-            size='large'
+            size="large"
             // aria-label='show 4 new mails'
-            color='inherit'
+            color="inherit"
           >
-            <Badge badgeContent={WishlistCount} color='error'>
-              <FavoriteRoundedIcon />
-            </Badge>
+            {/* <Badge badgeContent={WishlistCount} color='error'> */}
+            <FavoriteRoundedIcon />
+            {/* </Badge> */}
           </IconButton>
           Wishlist
         </MenuItem>
       </Link>
-      <Link to='/cart'>
+      <Link to="/cart">
         <MenuItem>
           <IconButton
-            size='large'
+            size="large"
             // aria-label='show 0 new notifications'
-            color='inherit'
+            color="inherit"
           >
-            <Badge badgeContent={<CartCounter />} color='error'>
-              <ShoppingCartOutlinedIcon />
-            </Badge>
+            {/* <Badge badgeContent={<CartCounter />} color='error'> */}
+            <ShoppingCartOutlinedIcon />
+            {/* </Badge> */}
           </IconButton>
           Cart
         </MenuItem>
       </Link>
       <MenuItem>
         <IconButton
-          size='large'
+          size="large"
           // aria-label='show 17 new notifications'
-          color='inherit'
+          color="inherit"
         >
-          <Badge badgeContent={0} color='error'>
+          <Badge badgeContent={0} color="error">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -225,11 +223,11 @@ export default function Navbar() {
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
-          size='large'
-          aria-label='account of current user'
-          aria-controls='primary-search-account-menu'
-          aria-haspopup='true'
-          color='inherit'
+          size="large"
+          aria-label="account of current user"
+          aria-controls="primary-search-account-menu"
+          aria-haspopup="true"
+          color="inherit"
         >
           <AccountCircle />
         </IconButton>
@@ -240,9 +238,9 @@ export default function Navbar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position='static'>
+      <AppBar position="static">
         <Toolbar>
-          <IconButton
+          {/* <IconButton
             size='large'
             edge='start'
             color='inherit'
@@ -250,12 +248,12 @@ export default function Navbar() {
             sx={{ mr: 2 }}
           >
             <MenuIcon />
-          </IconButton>
-          <Link to='/'>
+          </IconButton> */}
+          <Link to="/">
             <Typography
-              variant='h6'
+              variant="h6"
               noWrap
-              component='div'
+              component="div"
               sx={{
                 display: { xs: "none", sm: "block" },
                 textDecoration: "none",
@@ -270,63 +268,63 @@ export default function Navbar() {
               <SearchIcon />
             </SearchIconWrapper>
             <StyledInputBase
-              placeholder='Search…'
+              placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
-            <Link to='/wishlist'>
+            <Link to="/wishlist">
               <IconButton
-                size='large'
+                size="large"
                 // aria-label='show 4 new mails'
-                color='inherit'
+                color="inherit"
               >
-                <Badge badgeContent={WishlistCount} color='error'>
-                  <FavoriteRoundedIcon sx={{ color: "white" }} />
-                </Badge>
+                {/* <Badge badgeContent={WishlistCount} color='error'> */}
+                <FavoriteRoundedIcon sx={{ color: "white" }} />
+                {/* </Badge> */}
               </IconButton>
             </Link>
-            <Link to='/cart'>
+            <Link to="/cart">
               <IconButton
-                size='large'
+                size="large"
                 // aria-label='show 17 new notifications'
-                color='inherit'
+                color="inherit"
               >
-                <Badge badgeContent={<CartCounter />||0} color='error'>
-                  <ShoppingCartOutlinedIcon sx={{ color: "white" }} />
-                </Badge>
+                {/* <Badge badgeContent={<CartCounter />||0} color='error'> */}
+                <ShoppingCartOutlinedIcon sx={{ color: "white" }} />
+                {/* </Badge> */}
               </IconButton>
             </Link>
             <IconButton
-              size='large'
+              size="large"
               // aria-label='show 17 new notifications'
-              color='inherit'
+              color="inherit"
             >
-              <Badge badgeContent={0} color='error'>
+              <Badge badgeContent={0} color="error">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
             <IconButton
-              size='large'
-              edge='end'
-              aria-label='account of current user'
+              size="large"
+              edge="end"
+              aria-label="account of current user"
               aria-controls={menuId}
-              aria-haspopup='true'
+              aria-haspopup="true"
               onClick={handleProfileMenuOpen}
-              color='inherit'
+              color="inherit"
             >
               <AccountCircle />
             </IconButton>
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
             <IconButton
-              size='large'
-              aria-label='show more'
+              size="large"
+              aria-label="show more"
               aria-controls={mobileMenuId}
-              aria-haspopup='true'
+              aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color='inherit'
+              color="inherit"
             >
               <MoreIcon />
             </IconButton>

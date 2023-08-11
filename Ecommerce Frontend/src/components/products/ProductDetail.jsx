@@ -9,7 +9,7 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import { IconButton, Stack } from "@mui/material";
+import { CircularProgress, IconButton, Stack } from "@mui/material";
 import { Box } from "@mui/system";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductById } from "../../redux/productByID/action";
@@ -23,7 +23,6 @@ const ProductDetail = () => {
   const { loading, error, product } = useSelector(
     (state) => state.singleProduct
   );
-  console.log("Single", loading, error, product);
   
   const isLogin = JSON.parse(localStorage.getItem("LoginData")) || false;
 
@@ -32,14 +31,12 @@ const ProductDetail = () => {
   }, []);
   function handleCart(id) {
      if (isLogin) {
-       console.log(id);
        const payload = {
          products: id,
          userId: isLogin.user._id,
        };
 
        dispatch(addToCart(payload));
-       console.log("cart", payload);
      } else {
        navigate("/login");
      }
@@ -48,7 +45,11 @@ const ProductDetail = () => {
  
   return (
     <Box>
-      {loading && <div>Loading please wait ...</div>}
+      {loading && 
+        <div style={{display:"flex",minHeight:"80vh",alignItems:"center",justifyContent:"center"}}>
+        <CircularProgress />
+        </div>
+        }
       {error && <div>{error}</div>}
       {!loading && !error && (
         <Card variant='outlined' sx={{ maxWidth: 600, margin: "3% auto" }}>

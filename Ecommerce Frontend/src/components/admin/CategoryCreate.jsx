@@ -14,12 +14,12 @@ const CategoryCreate = () => {
     const Category = {
       category: name,
     };
-    console.log(Category);
+    // console.log(Category);
     const newCat = await axios.post(
       `${CONFIG.BASE_URL}/category/create`,
       Category
     );
-    console.log("Category", newCat);
+    // console.log("Category", newCat);
   }
   return (
     <div>

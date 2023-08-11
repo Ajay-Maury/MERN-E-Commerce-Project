@@ -7,7 +7,6 @@ const CartCounter = () => {
     const dispatch = useDispatch();
     const [count,setCount] = useState(0)
     const { data, loading, error } = useSelector((state) => state.cartData);
-    console.log("Count", data)
     const isLogin = JSON.parse(localStorage.getItem("LoginData")) || false;
     
     useEffect(() => {

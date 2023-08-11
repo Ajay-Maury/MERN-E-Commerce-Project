@@ -8,7 +8,7 @@ const BrandsList = () => {
     const [brandData, setBrandData] = useState([])
     async function getBrandData() {
         let data = await axios(`${CONFIG.BASE_URL}/brands`);
-      console.log("Brand :", data.data.Brand);
+      // console.log("Brand :", data.data.Brand);
       setBrandData(data.data.Brand);
   }
   useEffect(() => {

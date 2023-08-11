@@ -13,6 +13,6 @@ app.listen(PORT, async () => {
         console.log("Server is running at port : ",PORT)
         
     } catch (error) {
-        console.log("Error :",error)
+        console.log("Error while connection to database :",error)
     }
 })

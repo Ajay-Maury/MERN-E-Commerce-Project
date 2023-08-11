@@ -33,7 +33,6 @@ const UserSignup = () => {
       age,
       gender,
     };
-    console.log("user", userDetail);
     const data = axios
       .post(`${CONFIG.BASE_URL}/signup`, userDetail)
       .then((res) => {
@@ -41,7 +40,6 @@ const UserSignup = () => {
         navigate("/login",{replace:true})
         return res.data})
       .catch((err) => setError(err.response.data.errors[0].msg));
-    console.log("data", data);
   }
 
   return (
