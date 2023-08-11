@@ -146,13 +146,15 @@ router.delete("/:id", async (req, res) => {
     return res.status(500).send({ error: error.message });
   }
 });
+
 router.get("/:id/address", async (req, res) => {
   try {
     let address = await User.findById(req.params.id)
       .populate({ path: "addresses" })
       .lean()
       .exec();
-    address = address.addresses;
+    console.log('address:', address)
+    address = address?.addresses || [];
     return res.status(200).send({ address: address });
   } catch (error) {
     return res.status(500).send({ error: error.message });
@@ -193,6 +195,7 @@ router.post(
     }
   }
 );
+
 router.patch(
   "/address/edit/:idx",
   body("address_line")
@@ -223,6 +226,7 @@ router.patch(
     }
   }
 );
+
 router.delete(":id/address/delete/:idx", async (req, res) => {
   try {
     const address = await Address.findByIdAndDelete(req.params.idx);
