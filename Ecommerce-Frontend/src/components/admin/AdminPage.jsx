@@ -18,7 +18,7 @@ const AdminPage = () => {
               navigate("/admin/products/create", { replace: false })
             }
           >
-            Create Product
+            Add Product
           </Button>
         </Box>
 
@@ -29,7 +29,7 @@ const AdminPage = () => {
             variant='outlined'
             onClick={() => navigate("/admin/brands/create", { replace: false })}
           >
-            Create Brand
+            Add Brand
           </Button>
         </Box>
 
@@ -41,7 +41,7 @@ const AdminPage = () => {
               navigate("/admin/catogery/create", { replace: false })
             }
           >
-            Create Category
+            Add Category
           </Button>
         </Box>
 

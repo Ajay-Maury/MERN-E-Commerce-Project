@@ -42,7 +42,7 @@ BrandName : name, BrandLogo : logo
         </Stack>
       </Box>
       <Button variant="outlined" onClick={handleBrand}>
-        Create Brand
+        Add Brand
       </Button>
     </div>
   );

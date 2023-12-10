@@ -13,7 +13,14 @@ const PaymentVerifyController = require("./controllers/paymentVerification");
 
 const { register, login } = require("./controllers/authController");
 app.use(express.json());
-app.use(cors());
+
+const deployedUrl = 'https://mern-e-commerce-project.vercel.app'
+
+const corsOptions = {
+  origin: deployedUrl,
+};
+
+app.use(cors(corsOptions));
 
 app.use("/signup", register);
 app.use("/login", login);

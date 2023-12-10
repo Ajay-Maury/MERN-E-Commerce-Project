@@ -40,7 +40,7 @@ const CategoryCreate = () => {
         </Stack>
       </Box>
       <Button variant="outlined" onClick={handleCategory}>
-        Create Category
+        Add Category
       </Button>
     </div>
   );

@@ -145,7 +145,7 @@ const ProductCreate = () => {
         </Stack>
       </Box>
       <Button variant="contained" onClick={handleProduct}>
-        Create Product
+        Add Product
       </Button>
     </div>
   );
